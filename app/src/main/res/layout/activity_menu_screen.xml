@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".views.MenuScreen">
+
+
+        <include
+            layout="@layout/custom_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:onClick="navToFavorites"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="7dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/fav_liist" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:text="@string/my_fav_list"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:onClick="navToSearchScreen"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="7dp"
+
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/search_item" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_for_element"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:onClick="navToAdvanceSearch"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="7dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/advance_search" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:text="@string/advance_search"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlCompat" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:onClick="navToTopItemsChanges"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="7dp"
+
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/pie_chart" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:text="الأصناف الأكثر حركة"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!---->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:onClick="navToGetReportForCertainStore"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="7dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/store_report" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:text="@string/store_report"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlCompat" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:onClick="navToGetStoreReportInPeriodic"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="7dp"
+
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/report_in_time" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:paddingRight="3dp"
+                    android:paddingLeft="3dp"
+                    android:text="@string/store_report_periodic"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

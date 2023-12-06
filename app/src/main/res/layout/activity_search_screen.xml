@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.SearchScreen"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorAccent">
+
+
+    <include
+        layout="@layout/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/editTextTextViewId"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            >
+            <EditText
+                android:id="@+id/itemNumberQuerySearchEditText"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorPrimary"
+                android:inputType="number"
+                android:hint="@string/query_element_hint"
+                android:textSize="13sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/rounded_corner_white_color"
+
+                />
+            <Button
+                android:onClick="getSearchResult"
+                android:id="@+id/getSearchResultByItemNo"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/query_element"
+                android:textColor="@android:color/white"
+                android:background="@drawable/rounded_corner_primary_color"
+                />
+            <ImageView
+                android:id="@+id/idAddToFavImgSearchPage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/add_to_favorites"
+               android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:onClick="addToFav"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/totalSumTextViewId"
+        android:layout_below="@+id/editTextTextViewId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/textViewTotalQtySum"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            />
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerViewId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_top_corner_white_color"
+        android:layout_below="@id/totalSumTextViewId"
+        tools:listitem="@layout/single_item_search" />
+
+
+</RelativeLayout>

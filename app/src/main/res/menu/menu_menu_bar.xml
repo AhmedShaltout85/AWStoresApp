@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item-->
+<!--        android:id="@+id/idFavBarMenu"-->
+<!--        android:icon="@drawable/ic_favorite"-->
+<!--        app:showAsAction="ifRoom|withText"-->
+<!--        android:onClick="navToFav"-->
+<!--        android:title="@string/fav_action_bar">-->
+<!--    </item>-->
+<!--    <item-->
+<!--        android:id="@+id/idSearchBarMenu"-->
+<!--        android:icon="@drawable/ic_search"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:onClick="navToSearch"-->
+<!--        android:title="@string/search_action_bar">-->
+<!--    </item>-->
+        <item
+            android:id="@+id/idAppGuideBookBarMenu"
+            android:icon="@drawable/about_app"
+            app:showAsAction="ifRoom"
+            android:onClick="navToAppGuideBook"
+            android:title="@string/guide_book_action_bar">
+        </item>
+
+    </menu>

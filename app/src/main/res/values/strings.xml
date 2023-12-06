@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">AWStoresApp</string>
+    <string name="company_name">شركة مياه الشرب بالأسكندرية</string>
+    <string name="sector_name">قطاع التكنولوجيا والخدمات الرقمية</string>
+    <string name="depart_name">إدارة البرمجيات وصيانتها</string>
+    <string name="splash_title">تطبيق المخازن v2</string>
+    <string name="login_user">دخول</string>
+    <string name="enter_your_name">إسم المستخدم</string>
+    <string name="enter_your_password">كلمة المرور</string>
+    <string name="remember_me">remember me</string>
+    <string name="login_text">تسجيل الدخول</string>
+    <string name="my_fav_list">قائمة المفضلة</string>
+    <string name="search_for_element">إستعلام عن صنف</string>
+    <string name="search_action_bar">Search</string>
+    <string name="guide_book_action_bar">Guide Book</string>
+    <string name="fav_action_bar">Fav</string>
+    <string name="query_element">بحـث</string>
+    <string name="query_element_hint">فضلا أدخل رقم العنصر</string>
+    <string name="query_name_element_hint">فضلا أدخل إسم العنصر</string>
+    <string name="menu_page">MenuPage</string>
+    <string name="title_activity_top_items_changes">TopItemsChanges</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="advance_search">بحث متقدم</string>
+    <string name="store_report">تقرير جرد مخزن</string>
+    <string name="store_report_periodic">تقرير حركة مخزن فى فترة</string>
+    <!--    -->
+    <string name="get_result">بحث</string>
+    <string name="from_date">مــن</string>
+    <string name="to_date">إلــى</string>
+    <!--   -->
+    <string name="item_code">كود الصنف</string>
+    <string name="item_name">اسم الصنف</string>
+    <string name="total_qty">رصيد الصنف</string>
+    <string name="store_analysis">جرد مخزن</string>
+    <string name="store_analysis_periodic">حركة مخزن فى فترة</string>
+    <string name="total_qty_now">جرد مخزن فى فترة</string>
+    <string name="total_qty_in_start_point">رصيد بداية المدة</string>
+    <string name="total_qty_income">إجمالى الوارد</string>
+    <string name="total_qty_outcome">إجمالى الصادر</string>
+    <string name="total_qty_end_point">رصيد نهاية المدة</string>
+    <string name="search_view">Search</string>
+
+
+</resources>

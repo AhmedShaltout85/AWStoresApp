@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:fitsSystemWindows="true"
+    tools:context=".views.AdvancedSearchScreen">
+
+
+        <include
+            layout="@layout/custom_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/editTextTextViewId"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/advancedLinerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/getSearchResultAdvanced"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="3"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/rounded_corner_primary_color"
+                android:text="@string/query_element"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/itemNameQuerySearchEditTextH"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:background="@drawable/rounded_corner_white_color"
+                android:hint="@string/query_name_element_hint"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp"
+
+                />
+
+
+
+<!--            <ImageView-->
+<!--                android:id="@+id/idAddToFavImgSearchPageH"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:onClick="addToFavAdvanced"-->
+<!--                android:visibility="invisible"-->
+<!--                android:src="@drawable/add_to_favorites" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/backToParentMenu"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="5dp"-->
+<!--                android:onClick="backToMenuScreen"-->
+<!--                android:src="@drawable/ic_arrow_forward" />-->
+        </LinearLayout>
+
+    </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/editTextTextViewId"
+    >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/advanceSearchHorizRecView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/single_item_advanced_search_horizontal" />
+
+    <ProgressBar
+        android:id="@+id/advancedSearchProgressBarId"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/colorPrimaryDark" />
+
+
+
+</RelativeLayout>
+
+</RelativeLayout>

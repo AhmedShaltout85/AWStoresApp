@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="10dp"
+app:cardBackgroundColor="@color/colorPrimaryDark"
+app:cardCornerRadius="13dp"
+app:cardElevation="8dp"
+app:cardMaxElevation="10dp"
+app:cardPreventCornerOverlap="true">
+
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+
+
+    <!-- Text VIew to display Course Rating -->
+    <!-- Image used in present in drawable folder -->
+    <TextView
+        android:id="@+id/idStoreItemCodeReportTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="2dp"
+        android:text="@string/item_code"
+        android:textDirection="rtl"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/idStoreItemNameReportTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idStoreItemCodeReportTextView"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="2dp"
+        android:text="@string/item_name"
+        android:textDirection="rtl"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/idStoreTotalQtyReportTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idStoreItemNameReportTextView"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="2dp"
+        android:text="@string/total_qty"
+        android:textDirection="rtl"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
+</androidx.cardview.widget.CardView>
