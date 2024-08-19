@@ -178,6 +178,7 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
                                 "كود الصنف",
                                 "إسم الصنف",
                                 "الرصيد",
+                                "تاريخ أخر إرسال",
                                 "تقرير جرد " + STORE_NAME_REPORT + "-" + StoresConstants.CURRENT_DATE,
                                 storeReportModelArrayList);
                         //
@@ -190,6 +191,7 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
                                 "كود الصنف",
                                 "إسم الصنف",
                                 "الرصيد",
+                                "تاريخ أخر إرسال",
                                 getApplicationContext()
 
                                 );

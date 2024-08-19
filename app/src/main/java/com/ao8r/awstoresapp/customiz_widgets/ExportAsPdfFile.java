@@ -250,6 +250,7 @@ public class ExportAsPdfFile {
             String itemCode,
             String itemName,
             String totalQtyNow,
+            String lastDate,
             Context context) throws DocumentException {
         Document document = new Document();
         final File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName + ".pdf");
@@ -267,18 +268,20 @@ public class ExportAsPdfFile {
 
 
 //        PdfPTable pdfTable = new PdfPTable(1);
-        PdfPTable table = new PdfPTable(3);
+        PdfPTable table = new PdfPTable(4);
 
         table.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
 
         table.addCell(new Paragraph(itemName,f));
         table.addCell(new Paragraph(itemCode,f));
         table.addCell(new Paragraph(totalQtyNow,f));
+        table.addCell(new Paragraph(lastDate,f));
 
         for (StoreReportModel item : storeReportModelArrayList) {
             table.addCell(new Paragraph(item.getItemNameReport(),f));
             table.addCell(item.getItemCode().substring(0, 7));
             table.addCell(item.getTotalQtyNow());
+            table.addCell(item.getLastDate().substring(0, 10));
         }
 
         document.add(table);

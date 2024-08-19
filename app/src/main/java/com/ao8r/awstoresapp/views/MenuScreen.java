@@ -1,10 +1,8 @@
 package com.ao8r.awstoresapp.views;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -87,14 +85,16 @@ public class MenuScreen extends AppCompatActivity {
 //    content of Intents
 
     private void intentAppGuideBook() {
-//        Intent intent = new Intent(this, AppGuideBookScreen.class);
-//        startActivity(intent);
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=5X7WWVTrBvM"));
-        try {
-            MenuScreen.this.startActivity(webIntent);
-        } catch (ActivityNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        Intent intent = new Intent(this, ChangePassword.class);
+        startActivity(intent);
+
+        //        intent to open app youtube video
+//        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=5X7WWVTrBvM"));
+//        try {
+//            MenuScreen.this.startActivity(webIntent);
+//        } catch (ActivityNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     private void intentSearchs() {
@@ -129,6 +129,7 @@ public class MenuScreen extends AppCompatActivity {
         Intent intent = new Intent(this, GetStoreReportInPeriodic.class);
         startActivity(intent);
     }
+
 
 
 }

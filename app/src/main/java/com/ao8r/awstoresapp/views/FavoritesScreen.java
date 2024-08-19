@@ -1,10 +1,5 @@
 package com.ao8r.awstoresapp.views;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,16 +7,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.FavoritesAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.FavoritesModel;
-import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.ao8r.awstoresapp.repository.GetAllFavsRepo;
+import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.util.ArrayList;
 
 public class FavoritesScreen extends AppCompatActivity {
+
 
     //    declare vars
     private RecyclerView favRecyclerView;
@@ -87,12 +88,12 @@ public class FavoritesScreen extends AppCompatActivity {
 //    content of Intents
 
     private void intentSearchs() {
-        Intent intent = new Intent(this, SearchScreen.class);
+        Intent intent = new Intent(getApplicationContext(), SearchScreen.class);
         startActivity(intent);
     }
 
     private void intentMenus() {
-        Intent intent = new Intent(this, MenuScreen.class);
+        Intent intent = new Intent(getApplicationContext(), MenuScreen.class);
         startActivity(intent);
     }
 

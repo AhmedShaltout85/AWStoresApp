@@ -114,6 +114,7 @@ public class ExportAsExcelSheet {
             String itemCode,
             String itemName,
             String totalQtyNow,
+            String lastDate,
             String fileName,
             ArrayList<StoreReportModel> storeReportModelArrayList) throws IOException {
 
@@ -131,11 +132,13 @@ public class ExportAsExcelSheet {
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
 //        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
 
+        //TODO: add logo here
 
         row = sheet.createRow(0);
         Cell cell0 = row.createCell(0);
         Cell cell1 = row.createCell(1);
         Cell cell2 = row.createCell(2);
+        Cell cell3 = row.createCell(3);
 
 
         cell0.setCellValue(itemCode);
@@ -144,6 +147,8 @@ public class ExportAsExcelSheet {
         cell1.setCellStyle(cellStyle);
         cell2.setCellValue(totalQtyNow);
         cell2.setCellStyle(cellStyle);
+        cell3.setCellValue(lastDate);
+        cell3.setCellStyle(cellStyle);
 
 
         for (int i = 0; i < storeReportModelArrayList.size(); i++) {
@@ -162,6 +167,10 @@ public class ExportAsExcelSheet {
             cell = row.createCell(2);
             cell.setCellValue(obj.getTotalQtyNow());
             System.out.println(obj.getTotalQtyNow());
+
+            cell = row.createCell(3);
+            cell.setCellValue(obj.getLastDate().substring(0,10));
+            System.out.println(obj.getLastDate());
         }
 
 //        String filePath = Environment.getExternalStorageDirectory().getPath() +"/"+ fileName+".xlsx";

@@ -1,16 +1,21 @@
 package com.ao8r.awstoresapp.models;
 
-import java.util.ArrayList;
-
 public class StoreReportModel{
 
     private String itemCode, itemNameReport, totalQtyNow,
-    totalQtyInStartedPoint, totalQtyIncome, totalQtyOutcome, totalQtyEndPoint;
+    totalQtyInStartedPoint, totalQtyIncome, totalQtyOutcome, totalQtyEndPoint, lastDate;
 
     public StoreReportModel() {
     }
 
-    public StoreReportModel(String itemCode, String itemNameReport, String totalQtyNow, String totalQtyInStartedPoint, String totalQtyIncome, String totalQtyOutcome, String totalQtyEndPoint) {
+    public StoreReportModel(String itemCode,
+                            String itemNameReport,
+                            String totalQtyNow,
+                            String totalQtyInStartedPoint,
+                            String totalQtyIncome,
+                            String totalQtyOutcome,
+                            String totalQtyEndPoint,
+                            String lastDate) {
         this.itemCode = itemCode;
         this.itemNameReport = itemNameReport;
         this.totalQtyNow = totalQtyNow;
@@ -18,6 +23,15 @@ public class StoreReportModel{
         this.totalQtyIncome = totalQtyIncome;
         this.totalQtyOutcome = totalQtyOutcome;
         this.totalQtyEndPoint = totalQtyEndPoint;
+        this.lastDate = lastDate;
+    }
+
+    public String getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(String lastDate) {
+        this.lastDate = lastDate;
     }
 
     public String getItemCode() {

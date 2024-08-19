@@ -1,21 +1,22 @@
 package com.ao8r.awstoresapp.views;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.AzonateAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
-import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.ao8r.awstoresapp.repository.GetSingleStoreTotalQuantityRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
+import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.util.ArrayList;
 
@@ -73,7 +74,10 @@ public class DetailsScreen extends AppCompatActivity {
 //        get single Store Total quantity
         try {
 
-            GetSingleStoreTotalQuantityRepo.getSingleStoreTotalQuantity(getApplicationContext(), Integer.parseInt(tempItemNumbet), detailsModelArrayList);
+            GetSingleStoreTotalQuantityRepo.getSingleStoreTotalQuantity(
+                    getApplicationContext(),
+                    Integer.parseInt(tempItemNumbet),
+                    detailsModelArrayList);
         } catch (Exception e) {
 
             CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");

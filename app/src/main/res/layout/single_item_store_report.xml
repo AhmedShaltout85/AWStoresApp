@@ -54,5 +54,17 @@ app:cardPreventCornerOverlap="true">
         android:text="@string/total_qty"
         android:textDirection="rtl"
         android:textColor="@android:color/white" />
+<!--    TODO: add last date 19-08-2024-->
+    <TextView
+        android:id="@+id/idStoreLastDateSendReportTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idStoreTotalQtyReportTextView"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="2dp"
+        android:text="@string/last_date"
+        android:textDirection="rtl"
+        android:textColor="@android:color/white" />
 </RelativeLayout>
 </androidx.cardview.widget.CardView>

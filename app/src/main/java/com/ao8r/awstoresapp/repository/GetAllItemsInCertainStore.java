@@ -25,7 +25,7 @@ public class GetAllItemsInCertainStore {
                 CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
             } else {
 
-                //Query
+                //Query 'جرد مخزن'
                 //EXEC	[dbo].[StoreQty] @StoreName = ?
 
 
@@ -47,12 +47,14 @@ public class GetAllItemsInCertainStore {
                 storeReportModel.setItemCode(resultSet.getString("item_no"));
                 storeReportModel.setItemNameReport(resultSet.getString("item_name"));
                 storeReportModel.setTotalQtyNow(resultSet.getString("SBal"));
+                storeReportModel.setLastDate(resultSet.getString("lastDate"));
                 storeReportModelArrayList.add(storeReportModel);
 //
 //
                     System.out.println("itemCode is:   " + resultSet.getString("item_no"));
                     System.out.println("itemNameReport is:   " + resultSet.getString("item_name"));
                     System.out.println("totalQtyNow is:   " +resultSet.getString("SBal"));
+                    System.out.println("lastDate is:   " +resultSet.getString("lastDate"));
 
 
                 }

@@ -13,13 +13,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-
+import com.ao8r.awstoresapp.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.AzonateHorizontalAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomSnackBar;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
@@ -33,6 +32,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class AdvancedSearchScreen extends AppCompatActivity {
+    
 
     ProgressBar progressBarAdvancedSearch;
     //
@@ -78,6 +78,7 @@ public class AdvancedSearchScreen extends AppCompatActivity {
 
         //      initialise Recycler View Horizontal
         recyclerViewHorizontal = findViewById(R.id.advanceSearchHorizRecView);
+//        recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(getBaseContext(),
         recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(getBaseContext(),
                 RecyclerView.VERTICAL, false)); //define layout manger
         azonateHorizontalAdapter = new AzonateHorizontalAdapter(getApplicationContext(),

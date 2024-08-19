@@ -5,7 +5,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    compileSdkVersion 31
+    compileSdkVersion 34
     buildToolsVersion "30.0.2"
 
     defaultConfig {
@@ -21,10 +21,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 //    TODO:18-04-2023
-    dexOptions {
-        incremental true
-        javaMaxHeapSize "4g"
-    }
+//    dexOptions {
+//        incremental true
+//        javaMaxHeapSize "4g"
+//    }
 
     buildTypes {
         release {
@@ -67,16 +67,6 @@ dependencies {
 
 //    for creating pdf file
     implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.1'
-
-
-
-
-
-// read pdf file
-//    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-
-//    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
-
 
 
 }

@@ -17,10 +17,10 @@
 <!--    </item>-->
         <item
             android:id="@+id/idAppGuideBookBarMenu"
-            android:icon="@drawable/about_app"
+            android:icon="@drawable/reset_password"
             app:showAsAction="ifRoom"
             android:onClick="navToAppGuideBook"
-            android:title="@string/guide_book_action_bar">
+            android:title="@string/reset_password_action_bar">
         </item>
 
     </menu>

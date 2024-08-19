@@ -12,7 +12,7 @@
     <string name="my_fav_list">قائمة المفضلة</string>
     <string name="search_for_element">إستعلام عن صنف</string>
     <string name="search_action_bar">Search</string>
-    <string name="guide_book_action_bar">Guide Book</string>
+    <string name="reset_password_action_bar">Guide Book</string>
     <string name="fav_action_bar">Fav</string>
     <string name="query_element">بحـث</string>
     <string name="query_element_hint">فضلا أدخل رقم العنصر</string>
@@ -43,6 +43,11 @@
     <string name="total_qty_outcome">إجمالى الصادر</string>
     <string name="total_qty_end_point">رصيد نهاية المدة</string>
     <string name="search_view">Search</string>
+    <string name="last_date">تاريخ أخر إرسال</string>
+    <string name="change_password_text_view">تغيير كلمة المرور</string>
+    <string name="current_login_password_hint">فضلا أدخل كلمة المرور الحاليه</string>
+    <string name="new_password_hint">فضلا أدخل كلمه المرور الجديدة</string>
+    <string name="change_password_button">تغيير كلمة المرور</string>
 
 
 </resources>

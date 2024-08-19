@@ -55,6 +55,7 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
     //
     ExecutorService service = Executors.newSingleThreadExecutor();
 
+
     //
     ArrayList<StoresNamesModel> spinnerStoreNamePeriodicArrayList;
     ArrayList<StoreReportModel> storeReportPeriodicModelArrayList = new ArrayList<>();
@@ -121,6 +122,7 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                     storeReportPeriodicModelArrayList.clear();
                     storeReportInCertainPeriodDateAdapter.notifyDataSetChanged();
 
+
                     service.execute(new Runnable() {
                         @Override
                         public void run() {
@@ -164,6 +166,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                 }
             }
         });
+
+
 
         //from Date
         fromDate = findViewById(R.id.getEndDateReportPeriodicIdBtn);

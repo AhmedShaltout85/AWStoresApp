@@ -4,8 +4,6 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.REPORT_ITEM_CODE;
 import static com.ao8r.awstoresapp.utils.StoresConstants.REPORT_ITEM_NAME;
 import static com.ao8r.awstoresapp.utils.StoresConstants.REPORT_TOTAL_QTY;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +12,12 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.models.StoreReportModel;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class StoreReportAdapter extends RecyclerView.Adapter<StoreReportAdapter.Viewholder> implements Filterable {
 
@@ -54,6 +49,8 @@ public class StoreReportAdapter extends RecyclerView.Adapter<StoreReportAdapter.
         holder.itemCodeTextView.setText(REPORT_ITEM_CODE + String.valueOf(storeReportModel.getItemCode()).substring(0, 7));
         holder.itemNameTextView.setText(REPORT_ITEM_NAME + String.valueOf(storeReportModel.getItemNameReport()));
         holder.totalQtyNowTextView.setText(REPORT_TOTAL_QTY + String.valueOf(storeReportModel.getTotalQtyNow()));
+//        TODO: add last date send 19-08-2024
+        holder.lastDateSendTextView.setText("تاريخ أخر إرسال : " + storeReportModel.getLastDate().substring(0, 10));
 
 
     }
@@ -177,13 +174,15 @@ public class StoreReportAdapter extends RecyclerView.Adapter<StoreReportAdapter.
 
 
     public static class Viewholder extends RecyclerView.ViewHolder {
-        private final TextView itemCodeTextView, itemNameTextView, totalQtyNowTextView;
+        private final TextView itemCodeTextView, itemNameTextView, totalQtyNowTextView, lastDateSendTextView;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             itemCodeTextView = itemView.findViewById(R.id.idStoreItemCodeReportTextView);
             itemNameTextView = itemView.findViewById(R.id.idStoreItemNameReportTextView);
             totalQtyNowTextView = itemView.findViewById(R.id.idStoreTotalQtyReportTextView);
+            //TODO: add last date send 19-08-2024
+            lastDateSendTextView = itemView.findViewById(R.id.idStoreLastDateSendReportTextView);
         }
     }
 }

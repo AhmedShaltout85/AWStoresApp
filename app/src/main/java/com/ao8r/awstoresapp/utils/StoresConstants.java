@@ -4,6 +4,8 @@ package com.ao8r.awstoresapp.utils;
 public class StoresConstants {
 
 
+//    public static  String NEW_PASSWORD;
+//    public static String OLD_PASSWORD;
     // user info
     public static long CURRENT_USER_ID;
     public static String LOGIN_USER;
