@@ -47,8 +47,9 @@ public class ChangeUserPassword {
                 ResultSet resultSet = statement.executeQuery();
 
 
-                while (resultSet.next()) {
-
+                if (resultSet.next()) {
+                    String message = resultSet.getString("Message");
+                    System.out.println(message);
                     CustomToast.customToast(context, "تم تغيير كلمة المرور بنجاح");
                 }
 

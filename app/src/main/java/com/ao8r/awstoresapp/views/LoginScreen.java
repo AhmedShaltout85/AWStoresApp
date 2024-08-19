@@ -85,7 +85,8 @@ public class LoginScreen extends AppCompatActivity {
                 // Get data from user TextInput
                 StoresConstants.LOGIN_USER = loginName.getText().toString();
                 password = loginPassword.getText().toString();
-//                StoresConstants.OLD_PASSWORD = password;
+                StoresConstants.CURRENT_PASSWORD = password.trim();
+                System.out.println("Login Password:"+StoresConstants.CURRENT_PASSWORD);
 //                loginPassword.requestFocus();
                 // check user input data validation
 

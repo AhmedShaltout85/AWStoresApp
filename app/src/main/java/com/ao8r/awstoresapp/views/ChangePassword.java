@@ -14,6 +14,7 @@ import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.repository.ChangeUserPassword;
 import com.ao8r.awstoresapp.services.InternetConnection;
+import com.ao8r.awstoresapp.utils.StoresConstants;
 
 public class ChangePassword extends AppCompatActivity {
 
@@ -62,22 +63,30 @@ public class ChangePassword extends AppCompatActivity {
 
 
                 try {
-                    if (currentPassword.isEmpty() || newPassword.isEmpty()) {
-                        CustomToast.customToast(getApplicationContext(), "فضلا أكمل البيانات");
-                    } else {
+                    if (
+                            !currentPassword.isEmpty()&&
+                            !newPassword.isEmpty() &&
+                            StoresConstants.CURRENT_PASSWORD.equals(currentPassword)) {
 
                         ChangeUserPassword.changeUserPassword(
                                 getApplicationContext(),
                                 currentPassword,
                                 newPassword);
+
+                        System.out.println("currentPassword = " + currentPassword + "\n " + "newPassword =  " + newPassword);
+
                         CustomToast.customToast(getApplicationContext(), "Navigate to Login Screen");
                         Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
                         startActivity(intent);
+
+                    } else {
+                        CustomToast.customToast(getApplicationContext(), "فضلا أكمل البيانات أو البيانات غير صحيحة");
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    CustomToast.customToast(getApplicationContext(), "بيانات المستخدم غير صحيحة");
                 }
-
 
             }
         });
