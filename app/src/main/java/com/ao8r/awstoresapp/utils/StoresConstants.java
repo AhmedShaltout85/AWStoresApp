@@ -35,6 +35,7 @@ public class StoresConstants {
     public static final String TOP_TEN_MORE_MOVES = "الأصناف الأكثر حركة";
     public static final String STORE_ANALYSIS_TITLE = "جرد مخزن";
     public static final String STORE_ANALYSIS_PERIODIC_TITLE = "حركة مخزن فى فترة";
+    public static final String REQUEST_NEW_USER_TITLE = "طلب مستخدم جديد";
     public static  String START_DATE = "" ;
     public static  String END_DATE = "";
     public static  String CURRENT_DATE = "";

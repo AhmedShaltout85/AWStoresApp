@@ -64,7 +64,7 @@
         <RelativeLayout
             android:id="@+id/cardBoxCreRelative"
             android:layout_width="match_parent"
-            android:layout_height="346dp"
+            android:layout_height="390dp"
             android:layout_below="@+id/loginText"
             android:layout_marginTop="5dp">
 
@@ -87,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+
                     <EditText
                         android:id="@+id/userNameEditText"
                         android:layout_width="230dp"
@@ -95,13 +96,13 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginStart="45dp"
-                        android:layout_marginTop="45dp"
-                        android:layout_marginEnd="45dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="47dp"
+                        android:layout_marginTop="26dp"
+                        android:layout_marginEnd="47dp"
+                        android:layout_marginBottom="20dp"
                         android:hint="@string/enter_your_name"
-                        android:textColor="@color/colorPrimary"
                         android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="13sp" />
 
                     <EditText
@@ -112,13 +113,13 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginStart="48dp"
-                        android:layout_marginEnd="42dp"
-                        android:layout_marginBottom="151dp"
+                        android:layout_marginStart="47dp"
+                        android:layout_marginEnd="47dp"
+                        android:layout_marginBottom="229dp"
                         android:hint="@string/enter_your_password"
-                        android:textColor="@color/colorPrimary"
                         android:inputType="textPassword"
                         android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="13sp" />
 
                     <CheckBox
@@ -128,10 +129,10 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginStart="50dp"
                         android:layout_marginTop="59dp"
-                        android:layout_marginEnd="45dp"
-                        android:layout_marginBottom="93dp"
+                        android:layout_marginEnd="41dp"
+                        android:layout_marginBottom="160dp"
                         android:checked="true"
                         android:layoutDirection="ltr"
                         android:text="@string/remember_me"
@@ -145,14 +146,27 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginStart="45dp"
-                        android:layout_marginEnd="45dp"
-                        android:layout_marginBottom="29dp"
+                        android:layout_marginStart="47dp"
+                        android:layout_marginEnd="47dp"
+                        android:layout_marginBottom="88dp"
                         android:background="@drawable/rounded_corner_accent_color"
                         android:text="@string/login_user"
                         android:textColor="@android:color/white"
                         android:textSize="17sp" />
 
+                    <TextView
+                        android:id="@+id/requestNewUser"
+                        android:layout_width="230dp"
+                        android:layout_height="42dp"
+                        android:layout_above="@+id/userLoginButton"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="47dp"
+                        android:layout_marginTop="89dp"
+                        android:layout_marginEnd="47dp"
+                        android:layout_marginBottom="-109dp"
+                        android:text="@string/request_new_user"
+                        android:onClick="navToRequestNewUser"
+                        android:textColor="@color/colorPrimaryDark" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

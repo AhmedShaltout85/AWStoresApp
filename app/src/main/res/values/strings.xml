@@ -24,7 +24,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
-    <string name="advance_search">بحث متقدم</string>
+    <string name="advance_search">بحث بالأسم</string>
     <string name="store_report">تقرير جرد مخزن</string>
     <string name="store_report_periodic">تقرير حركة مخزن فى فترة</string>
     <!--    -->
@@ -48,6 +48,15 @@
     <string name="current_login_password_hint">فضلا أدخل كلمة المرور الحاليه</string>
     <string name="new_password_hint">فضلا أدخل كلمه المرور الجديدة</string>
     <string name="change_password_button">تغيير كلمة المرور</string>
+    <string name="request_new_user"><u>Request New User.</u></string>
+    <string name="request_new_user_button">طلب مستخدم جديد</string>
+    <string name="enter_employee_name"> اسم الموظف</string>
+    <string name="enter_notes">ملاحظات</string>
+    <string name="enter_employee_number">رقم الموظف (5 أرقام)</string>
+    <string name="enter_employee_phone_number">رقم الموبيل ( 11 رقم)</string>
+    <string name="enter_user_location">مكان العمل</string>
+    <string name="enter_user_job">الوظيفة</string>
+    <string name="confirm_password_hint">مطابقة كلمة المرور الجديدة</string>
 
 
 </resources>

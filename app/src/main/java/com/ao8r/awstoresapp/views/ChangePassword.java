@@ -3,6 +3,7 @@ package com.ao8r.awstoresapp.views;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -18,9 +19,9 @@ import com.ao8r.awstoresapp.utils.StoresConstants;
 
 public class ChangePassword extends AppCompatActivity {
 
-    private EditText currentPasswordEditText, newPasswordEditText;
+    private EditText currentPasswordEditText, newPasswordEditText, confrimPasswordEditText;
     private Button changePasswordButton;
-    private String currentPassword, newPassword;
+    private String currentPassword, newPassword, confirmPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class ChangePassword extends AppCompatActivity {
         //declare views
         currentPasswordEditText = findViewById(R.id.currentPasswordEditText);
         newPasswordEditText = findViewById(R.id.newPasswordEditText);
+        confrimPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         changePasswordButton = findViewById(R.id.changePasswordButton);
 
         //set click listener
@@ -39,6 +41,7 @@ public class ChangePassword extends AppCompatActivity {
             public void onClick(View view) {
                 currentPassword = currentPasswordEditText.getText().toString().trim();
                 newPassword = newPasswordEditText.getText().toString().trim();
+                confirmPassword = confrimPasswordEditText.getText().toString().trim();
 
 
                 //        hide keyboard after typed
@@ -64,9 +67,34 @@ public class ChangePassword extends AppCompatActivity {
 
                 try {
                     if (
-                            !currentPassword.isEmpty()&&
-                            !newPassword.isEmpty() &&
-                            StoresConstants.CURRENT_PASSWORD.equals(currentPassword)) {
+                            currentPassword.isEmpty() &&
+                                    newPassword.isEmpty() &&
+                                    confirmPassword.isEmpty()
+                    ) {
+                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة");
+
+//
+//                        ChangeUserPassword.changeUserPassword(
+//                                getApplicationContext(),
+//                                currentPassword,
+//                                newPassword);
+//
+//                        System.out.println("currentPassword = " + currentPassword + "\n " + "newPassword =  " + newPassword);
+//
+////                        CustomToast.customToast(getApplicationContext(), "إعادة التوجيهه الى صحفه دخول المستخدمين");
+//                        CustomLoader.customLoader(getApplicationContext(), "إعادة التوجيهه الى صحفه دخول المستخدمين");
+//
+//                        //redirect to login page
+//                        Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
+//                        startActivity(intent);
+
+                    } else if (!confirmPassword.equals(newPassword)) {
+                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة");
+
+                    } else if (!StoresConstants.CURRENT_PASSWORD.equals(currentPassword)) {
+                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة");
+
+                    } else {
 
                         ChangeUserPassword.changeUserPassword(
                                 getApplicationContext(),
@@ -75,12 +103,19 @@ public class ChangePassword extends AppCompatActivity {
 
                         System.out.println("currentPassword = " + currentPassword + "\n " + "newPassword =  " + newPassword);
 
-                        CustomToast.customToast(getApplicationContext(), "Navigate to Login Screen");
-                        Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
-                        startActivity(intent);
+                        CustomToast.customToast(getApplicationContext(), "إعادة التوجيهه الى صحفه دخول المستخدمين");
 
-                    } else {
-                        CustomToast.customToast(getApplicationContext(), "فضلا أكمل البيانات أو البيانات غير صحيحة");
+                        new Handler().postDelayed(new Runnable() {
+                            @Override public void run() {
+                                Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
+                                startActivity(intent);
+                                finish(); } }, 4000);
+
+//                        //redirect to login page
+//                        Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
+//                        startActivity(intent);
+
+//                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة");
 
                     }
                 } catch (Exception e) {

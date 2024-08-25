@@ -34,7 +34,7 @@ public class ExportAsExcelSheet {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
 
-        XSSFSheet sheet = workbook.createSheet(StoresConstants.START_DATE +"--"+StoresConstants.END_DATE);
+        XSSFSheet sheet = workbook.createSheet(StoresConstants.START_DATE + "--" + StoresConstants.END_DATE);
 
         XSSFRow row;
 
@@ -45,6 +45,8 @@ public class ExportAsExcelSheet {
         cellStyle.setFont(font);
         cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
+//        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+//        cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
 
         row = sheet.createRow(0);
         Cell cell0 = row.createCell(0);
@@ -53,6 +55,10 @@ public class ExportAsExcelSheet {
         Cell cell3 = row.createCell(3);
         Cell cell4 = row.createCell(4);
         Cell cell5 = row.createCell(5);
+
+        //make header fixed display (20-08-2024)
+        //Freeze Header Row
+        sheet.createFreezePane(0, 1);
 
 
         cell0.setCellValue(itemCode);
@@ -75,8 +81,8 @@ public class ExportAsExcelSheet {
             // assuming obj has two fields
             System.out.println("<<جـــــــــارى الطـــــــباعه>>");
             Cell cell = row.createCell(0);
-            cell.setCellValue(obj.getItemCode().substring(0,7));
-            System.out.println(obj.getItemCode().substring(0,7));
+            cell.setCellValue(obj.getItemCode().substring(0, 7));
+            System.out.println(obj.getItemCode().substring(0, 7));
 
             cell = row.createCell(1);
             cell.setCellValue(obj.getItemNameReport());
@@ -99,7 +105,7 @@ public class ExportAsExcelSheet {
             System.out.println(obj.getTotalQtyEndPoint());
         }
 
-        String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)+"/"+ fileName+".xlsx";
+        String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/" + fileName + ".xlsx";
         FileOutputStream outputStream = new FileOutputStream(filePath);
         workbook.write(outputStream);
         outputStream.flush();
@@ -120,10 +126,12 @@ public class ExportAsExcelSheet {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
 
-        XSSFSheet sheet = workbook.createSheet( "تقرير جرد " +StoresConstants.STORE_NAME_REPORT);
+        // create sheet in workbook and name it
+        XSSFSheet sheet = workbook.createSheet("تقرير جرد " + StoresConstants.STORE_NAME_REPORT);
 
         XSSFRow row;
 
+        // cells style
         CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
         Font font = sheet.getWorkbook().createFont();
         font.setBold(true);
@@ -131,16 +139,21 @@ public class ExportAsExcelSheet {
         cellStyle.setFont(font);
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
 //        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+//        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+//        cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
 
-        //TODO: add logo here
-
+        // Creating Header cells
         row = sheet.createRow(0);
         Cell cell0 = row.createCell(0);
         Cell cell1 = row.createCell(1);
         Cell cell2 = row.createCell(2);
         Cell cell3 = row.createCell(3);
 
+        //make header fixed display (20-08-2024)
+        //Freeze Header Row
+        sheet.createFreezePane(0, 1);
 
+        // adding cells name and style
         cell0.setCellValue(itemCode);
         cell0.setCellStyle(cellStyle);
         cell1.setCellValue(itemName);
@@ -150,15 +163,15 @@ public class ExportAsExcelSheet {
         cell3.setCellValue(lastDate);
         cell3.setCellStyle(cellStyle);
 
-
+        // Creating Body
         for (int i = 0; i < storeReportModelArrayList.size(); i++) {
             row = sheet.createRow(i + 1);
             StoreReportModel obj = storeReportModelArrayList.get(i);
             // assuming obj has two fields
             System.out.println("<<جـــــــــارى الطـــــــباعه>>");
             Cell cell = row.createCell(0);
-            cell.setCellValue(obj.getItemCode().substring(0,7));
-            System.out.println(obj.getItemCode().substring(0,7));
+            cell.setCellValue(obj.getItemCode().substring(0, 7));
+            System.out.println(obj.getItemCode().substring(0, 7));
 
             cell = row.createCell(1);
             cell.setCellValue(obj.getItemNameReport());
@@ -169,12 +182,12 @@ public class ExportAsExcelSheet {
             System.out.println(obj.getTotalQtyNow());
 
             cell = row.createCell(3);
-            cell.setCellValue(obj.getLastDate().substring(0,10));
+            cell.setCellValue(obj.getLastDate().substring(0, 10));
             System.out.println(obj.getLastDate());
         }
 
 //        String filePath = Environment.getExternalStorageDirectory().getPath() +"/"+ fileName+".xlsx";
-        String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) +"/"+ fileName+".xlsx";
+        String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/" + fileName + ".xlsx";
         FileOutputStream outputStream = new FileOutputStream(filePath);
         workbook.write(outputStream);
         outputStream.flush();

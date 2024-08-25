@@ -4,6 +4,7 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.URL_CONNECT_LINK;
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -183,4 +184,9 @@ public class LoginScreen extends AppCompatActivity {
         bottomSheetDialog.show();
     }
 
+    // TODO: navToRequestNewUser
+    public void navToRequestNewUser(View view) {
+        Intent intent = new Intent(this, RequestNewUser.class);
+        startActivity(intent);
+    }
 }

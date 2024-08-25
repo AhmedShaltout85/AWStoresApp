@@ -1,11 +1,5 @@
 package com.ao8r.awstoresapp.views;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,18 +14,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.AzonateAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomSnackBar;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
-import com.ao8r.awstoresapp.models.FavoritesModel;
-import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.ao8r.awstoresapp.repository.AddItemsToFavoritesRepo;
 import com.ao8r.awstoresapp.repository.CheckItemExistsInFavoritesRepo;
 import com.ao8r.awstoresapp.repository.GetSingleStoreTotalQuantityRepo;
 import com.ao8r.awstoresapp.repository.GetTotalQuantityRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
+import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.util.ArrayList;
 
@@ -170,6 +169,7 @@ public class SearchScreen extends AppCompatActivity {
 
 //            check if item exists in Favorites List or NOT
 
+                //TODO: check if item exists in Favorites List or NOT(SEARCH by Item Name in advanced Search page 24-08-2024)
                 try {
 
                     CheckItemExistsInFavoritesRepo.getItemNoFromFavoritesRepo(getApplicationContext());
@@ -178,7 +178,7 @@ public class SearchScreen extends AppCompatActivity {
                 }
 
                 if (StoresConstants.FAV_ITEM_NUMBER == StoresConstants.ITEM_NUMBER) {
-                    addToFavImg.setImageResource(R.drawable.unfavorite);
+                    addToFavImg.setImageResource(R.drawable.ic_favorite_white);
                 } else {
                     addToFavImg.setImageResource(R.drawable.add_to_favorites);
 
@@ -204,7 +204,7 @@ public class SearchScreen extends AppCompatActivity {
     public void addToFav(View view) {
 
         if (StoresConstants.FAV_ITEM_NUMBER == StoresConstants.ITEM_NUMBER) {
-            addToFavImg.setImageResource(R.drawable.unfavorite);
+            addToFavImg.setImageResource(R.drawable.ic_favorite_white);
             CustomToast.customToast(getApplicationContext(), "هذا الصنف موجود مسبقا");
 
         } else {
@@ -216,7 +216,7 @@ public class SearchScreen extends AppCompatActivity {
                 try {
                     addToFavImg.setImageResource(R.drawable.add_to_favorites);
                     AddItemsToFavoritesRepo.insertItemsToFavorites(getApplicationContext(), view);
-                    addToFavImg.setImageResource(R.drawable.unfavorite);
+                    addToFavImg.setImageResource(R.drawable.ic_favorite_white);
                 } catch (Exception e) {
                     CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
                 }

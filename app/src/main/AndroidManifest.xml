@@ -26,7 +26,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".views.RequestNewUser"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:parentActivityName=".views.LoginScreen"/>
+        <activity
             android:name=".views.ChangePassword"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false" />
         <activity
             android:name=".views.AppGuideBookScreen"
