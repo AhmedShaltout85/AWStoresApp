@@ -1,6 +1,13 @@
 package com.ao8r.awstoresapp.repository;
 
 
+import static com.ao8r.awstoresapp.utils.StoresConstants.DB_NAME;
+import static com.ao8r.awstoresapp.utils.StoresConstants.HOST;
+import static com.ao8r.awstoresapp.utils.StoresConstants.PASSWORD;
+import static com.ao8r.awstoresapp.utils.StoresConstants.PORT;
+import static com.ao8r.awstoresapp.utils.StoresConstants.SRC_DRIVER;
+import static com.ao8r.awstoresapp.utils.StoresConstants.USERNAME;
+import static com.ao8r.awstoresapp.utils.StoresConstants.connection;
 
 import android.content.Context;
 import android.os.StrictMode;
@@ -8,18 +15,17 @@ import android.os.StrictMode;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class RequestUser {
-    static Connection connection;
-    private static final String HOST = "41.33.226.212";
-    private static final int PORT = 5010;
-    private static final String DB_NAME = "awco";
-    private static final String USERNAME = "awco";
-    private static final String PASSWORD = "awco";
-    private static final String SRC_DRIVER = "net.sourceforge.jtds.jdbc.Driver";
+//    static Connection connection;
+//    private static final String HOST = "41.33.226.212";
+//    private static final int PORT = 5010;
+//    private static final String DB_NAME = "awco";
+//    private static final String USERNAME = "awco";
+//    private static final String PASSWORD = "awco";
+//    private static final String SRC_DRIVER = "net.sourceforge.jtds.jdbc.Driver";
 
     public static void requestUser(Context context,
                                    String empId,
@@ -47,6 +53,7 @@ public class RequestUser {
                 CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
             } else {
 
+                System.out.println("before insert procedure");
                 //Query
                 //  -- Insert Mob_User_Request
 
@@ -60,7 +67,6 @@ public class RequestUser {
                 //		@UPass = N'123654',
                 //		@Notes = N'كل الصلاحيات';
 
-                System.out.println("before insert procedure");
 
 //
 //                String updateQuery ="EXEC [dbo].[Add_Request] " +

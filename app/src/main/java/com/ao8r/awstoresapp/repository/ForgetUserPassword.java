@@ -1,6 +1,5 @@
 package com.ao8r.awstoresapp.repository;
 
-
 import static com.ao8r.awstoresapp.utils.StoresConstants.DB_NAME;
 import static com.ao8r.awstoresapp.utils.StoresConstants.HOST;
 import static com.ao8r.awstoresapp.utils.StoresConstants.PASSWORD;
@@ -11,23 +10,20 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.connection;
 
 import android.os.StrictMode;
 
-import com.ao8r.awstoresapp.utils.EncryptionUtil;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public  class RetrieveEncryptedString {
 
-//    private static Connection connection;
-//    private static final String HOST = "41.33.226.212";
-//    private static final int PORT = 5010;
-//    private static final String DB_NAME = "awco";
-//    private static final String USERNAME = "awco";
-//    private static final String PASSWORD = "awco";
-//    private static final String SRC_DRIVER = "net.sourceforge.jtds.jdbc.Driver";
-    public static void retrieveEncryptedString(String empId) {
+
+public  class ForgetUserPassword {
+
+
+    public static void forgetUserPassword(String uPass,
+                                          String uName,
+                                          String empId,
+                                          String empMobile) {
 
         try {
 
@@ -44,21 +40,33 @@ public  class RetrieveEncryptedString {
 
             if (connection == null) {
             } else {
-                String query = "SELECT * FROM Mob_User_Request WHERE Emp_ID = ?";
+                //query UPass update
+                //"UPDATE Mob_User_Request" +
+                //                        "SET UPass = ?" +
+                //                        "WHERE Emp_ID = ? " +
+                //                        "AND " +
+                //                        "UName = ? " +
+                //                        "AND " +
+                //                        "Emp_Mobile = ?;"
+                String query = "UPDATE Mob_User_Request" +
+                        "SET UPass = ?" +
+                        "WHERE Emp_ID = ? " +
+                        "AND " +
+                        "UName = ? " +
+                        "AND " +
+                        "Emp_Mobile = ?;";
 
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-                preparedStatement.setString(1, empId);
+                preparedStatement.setString(1, uPass);
+                preparedStatement.setString(2, empId);
+                preparedStatement.setString(3, uName);
+                preparedStatement.setString(4, empMobile);
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    String Upass = resultSet.getString("UPass");
-                    System.out.println("encrypted password = " + Upass);
-                    String EncryptedPass = EncryptionUtil.decrypt(Upass);
-                    System.out.println("decrypted password = " + EncryptedPass);
-
-                    // Do something with the encrypted string
+                    System.out.println("Forget Password change successfully");
                 }
             }
         } catch (SQLException ex) {

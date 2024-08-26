@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
+import com.ao8r.awstoresapp.repository.GetAllUserRequestInfoByEmpID;
 import com.ao8r.awstoresapp.repository.RequestUser;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.EncryptionUtil;
@@ -53,9 +54,6 @@ public class RequestNewUser extends AppCompatActivity {
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbarAdvancedSearch);
-//        toolbarAdvancedSearch.setSubtitle(StoresConstants.LOGIN_USER);
-//        toolbarAdvancedSearch.setSubtitleTextColor(Color.WHITE);
-//        toolbarAdvancedSearch.setPadding(1, 2, 1, 2);
 ////       set title
         setTitle(StoresConstants.REQUEST_NEW_USER_TITLE);
 
@@ -80,7 +78,7 @@ public class RequestNewUser extends AppCompatActivity {
         requestNewUserButton = findViewById(R.id.requestNewUserButton);
 
         //set focus to first edit text
-        empNameEditText.requestFocus();
+        empIdEditText.requestFocus();
 
 //
 // set on click listener
@@ -171,7 +169,7 @@ public class RequestNewUser extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-                        }, 4000);
+                        }, 3000);
 
                         //redirect to login page
 //                    Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
@@ -196,6 +194,28 @@ public class RequestNewUser extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void getUserInfo(View view) {
+        if (InternetConnection.checkConnection(getApplicationContext())) {
+            // Its Available...
+            CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+        } else {
+            // Not Available...
+            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+
+        }
+        if (empIdEditText.getText().toString().isEmpty()) {
+            CustomToast.customToast(getApplicationContext(), "من فضلك ادخل رقم الموظف");
+        } else {
+            CustomToast.customToast(getApplicationContext(),"فضلا أنتظر جارى جلب بيانات الموظف");
+            //get user info by emp id
+            GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(empIdEditText.getText().toString().trim());
+            empNameEditText.setText(StoresConstants.EMP_NAME);
+            empMobileEditText.setText(StoresConstants.EMP_MOBILE);
+            empJobEditText.setText(StoresConstants.EMP_JOB);
+            empLocationEditText.setText(StoresConstants.EMP_LOCATION);
+        }
     }
 }
 

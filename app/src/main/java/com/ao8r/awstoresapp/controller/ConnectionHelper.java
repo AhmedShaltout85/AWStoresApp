@@ -36,7 +36,7 @@ public class ConnectionHelper {
             //Import mssql driver
             Class.forName(SRC_DRIVER);
 
-            //ceate connection
+            //create connection
             connection = DriverManager.getConnection(
 //                    String.format("jdbc:jtds:sqlserver://%s:%d/%s", HOST, PORT, DB_NAME)
                     "jdbc:jtds:sqlserver://"+URL_CONNECT_LINK+":"+PORT+"/"+DB_NAME
