@@ -8,8 +8,10 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.SRC_DRIVER;
 import static com.ao8r.awstoresapp.utils.StoresConstants.USERNAME;
 import static com.ao8r.awstoresapp.utils.StoresConstants.connection;
 
+import android.content.Context;
 import android.os.StrictMode;
 
+import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.sql.DriverManager;
@@ -18,8 +20,7 @@ import java.sql.ResultSet;
 
 public  class GetAllUserRequestInfoByEmpID {
 
-    public static void getAllUserRequestInfoByEmpID(String empId) {
-
+    public static void getAllUserRequestInfoByEmpID(Context context, String empId) {
         try {
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -56,6 +57,9 @@ public  class GetAllUserRequestInfoByEmpID {
                     StoresConstants.EMP_MOBILE = resultSet.getString("Emp_Mobile");
                     StoresConstants.EMP_JOB = resultSet.getString("Emp_Job");
                     StoresConstants.EMP_LOCATION = resultSet.getString("Emp_Location");
+                    CustomToast.customToast(context, "تم جلب بيانات الموظف بنجاح");
+                }else {
+                    CustomToast.customToast(context, "لايوجد بيانات لهذا الموظف");
                 }
             }
         } catch (Exception ex) {

@@ -210,7 +210,10 @@ public class RequestNewUser extends AppCompatActivity {
         } else {
             CustomToast.customToast(getApplicationContext(),"فضلا أنتظر جارى جلب بيانات الموظف");
             //get user info by emp id
-            GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(empIdEditText.getText().toString().trim());
+            GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(
+                    getApplicationContext(),
+                    empIdEditText.getText().toString().trim());
+
             empNameEditText.setText(StoresConstants.EMP_NAME);
             empMobileEditText.setText(StoresConstants.EMP_MOBILE);
             empJobEditText.setText(StoresConstants.EMP_JOB);

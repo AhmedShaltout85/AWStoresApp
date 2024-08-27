@@ -189,4 +189,10 @@ public class LoginScreen extends AppCompatActivity {
         Intent intent = new Intent(this, RequestNewUser.class);
         startActivity(intent);
     }
+
+    // TODO: navToForgetPassword
+    public void navToForgetPassword(View view) {
+        Intent intent = new Intent(this, ForgetUserPasswordScreen.class);
+        startActivity(intent);
+    }
 }

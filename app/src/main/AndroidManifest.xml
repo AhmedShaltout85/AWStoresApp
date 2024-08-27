@@ -40,14 +40,7 @@
             android:name=".views.ChangePassword"
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".views.AppGuideBookScreen"
-            android:exported="false"
-            android:parentActivityName=".views.MenuScreen">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".views.GetStoreReportInPeriodic"
             android:exported="false"
