@@ -49,6 +49,7 @@
                 android:background="@drawable/rounded_corner_white_color"
                 android:hint="@string/query_name_element_hint"
                 android:inputType="text"
+                android:imeOptions="actionDone"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textColor="@color/colorPrimary"

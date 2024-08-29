@@ -13,12 +13,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import com.ao8r.awstoresapp.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.AzonateHorizontalAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomSnackBar;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
@@ -74,7 +75,7 @@ public class AdvancedSearchScreen extends AppCompatActivity {
 
 //
         getQueryByNameResult = findViewById(R.id.getSearchResultAdvanced);
-
+        itemNameEditTextAdvanced.requestFocus();
 
         //      initialise Recycler View Horizontal
         recyclerViewHorizontal = findViewById(R.id.advanceSearchHorizRecView);

@@ -79,6 +79,7 @@ public class SearchScreen extends AppCompatActivity {
         azonateRecyclerView.setAdapter(azonateAdapter); //assign adapter
 //        EditText
         itemNumberEditText = findViewById(R.id.itemNumberQuerySearchEditText); //assign editText to item Nu.
+        itemNumberEditText.requestFocus();
 //        TextView
         storesTotalQuantity = findViewById(R.id.textViewTotalQtySum); //assign textView to total QTY
         storesTotalQuantity.setText("الرصيد الكلى فى المخازن: " + "  " + totalQty); //assign value to text
