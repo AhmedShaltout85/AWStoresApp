@@ -169,7 +169,7 @@ public class RequestNewUser extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-                        }, 3000);
+                        }, 2000);
 
                         //redirect to login page
 //                    Intent intent = new Intent(getApplicationContext(), LoginScreen.class);

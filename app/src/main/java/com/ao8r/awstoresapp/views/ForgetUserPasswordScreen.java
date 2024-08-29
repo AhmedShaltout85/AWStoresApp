@@ -19,6 +19,7 @@ import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.repository.ForgetUserPassword;
 import com.ao8r.awstoresapp.services.InternetConnection;
+import com.ao8r.awstoresapp.utils.EncryptionUtil;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 public class ForgetUserPasswordScreen extends AppCompatActivity {
@@ -93,12 +94,14 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
                         CustomToast.customToast(getApplicationContext(), "من فضلك ادخل جميع البيانات");
                     } else {
 
+
                         System.out.println("Forget Password button clicked start");
                         ForgetUserPassword.forgetUserPassword(getApplicationContext(),
                                 empId,
                                 empMobile,
                                 uName,
-                                Upass);
+//                                Upass);
+                                EncryptionUtil.encrypt(Upass));
                         CustomToast.customToast(getApplicationContext(), "تم إرسال الطلب بنجاح");
                         System.out.println("Forget Password button clicked end");
 
@@ -113,7 +116,7 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-                        }, 3000);
+                        }, 2000);
                     }
 
                 } catch (Exception e) {

@@ -109,7 +109,7 @@ public class ChangePassword extends AppCompatActivity {
                             @Override public void run() {
                                 Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
                                 startActivity(intent);
-                                finish(); } }, 3000);
+                                finish(); } }, 2000);
 
 //                        //redirect to login page
 //                        Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
