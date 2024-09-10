@@ -38,7 +38,7 @@ public class LoginRepo {
 
 
                 if (resultSet.next()) {
-                    CustomToast.customToast(context, "تم تسجيل الدخول بنجاح");
+                    CustomToast.customToast(context, "تم تسجيل الدخول بنجاح ✅");
                     StoresConstants.CURRENT_USER_ID = resultSet.getInt("ID");
                     StoresConstants.USER_CONTROL = resultSet.getInt("Flag");
 
@@ -55,7 +55,7 @@ public class LoginRepo {
                     context.startActivity(intent);
 
                 } else {
-                    CustomToast.customToast(context, "بيانات خاطئة");
+                    CustomToast.customToast(context, "بيانات خاطئة ❌");
 
                 }
             }

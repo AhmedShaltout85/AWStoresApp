@@ -149,7 +149,7 @@
                     android:layout_height="58dp"
                     android:layout_gravity="bottom"
                     android:gravity="center_vertical"
-                    android:text="الأصناف الأكثر حركة"
+                    android:text="@string/more_ations_elements"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="12sp"

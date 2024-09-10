@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.repository.ForgetUserPassword;
+import com.ao8r.awstoresapp.repository.GetAllUserRequestInfoByEmpID;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.EncryptionUtil;
 import com.ao8r.awstoresapp.utils.StoresConstants;
@@ -33,6 +34,13 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_forget_user_password_screen);
+
+        //add sms permission//TODO: //31-08-2024
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{Manifest.permission.SEND_SMS}, 1);
+//        }
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbarAdvancedSearch = findViewById(R.id.customToolbarId);
@@ -61,7 +69,7 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
         forgetUserPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CustomToast.customToast(ForgetUserPasswordScreen.this, "Forget Password Page");
+
                 //get data
                 empId = empIdEditText.getText().toString().trim();
                 uName = uNameEditText.getText().toString().trim();
@@ -76,35 +84,64 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
 
                 if (InternetConnection.checkConnection(getApplicationContext())) {
                     // Its Available...
-                    CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+                    CustomToast.customToast(getApplicationContext(), "متصل بالانترنت✅");
                 } else {
                     // Not Available...
-                    CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+                    CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌");
 
                 }
 
                 System.out.println("Forget Password button clicked");
 
-                try {
-                    if (empId.isEmpty() &&
-                            uName.isEmpty() &&
-                            empMobile.isEmpty() &&
-                            Upass.isEmpty()) {
+//                try {
+                //
+                if (empId.isEmpty() &&
+                        uName.isEmpty() &&
+                        empMobile.isEmpty() &&
+                        Upass.isEmpty()) {
 
-                        CustomToast.customToast(getApplicationContext(), "من فضلك ادخل جميع البيانات");
-                    } else {
+                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل جميع البيانات ❌");
 
 
-                        System.out.println("Forget Password button clicked start");
+                } else {
+
+                    System.out.println("Forget Password button clicked start");
+
+                    try {
+                        //
+                        GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(getApplicationContext(), empId);
+                        if(!StoresConstants.EMP_ID.equals(empId)){
+                            CustomToast.customToast(getApplicationContext(), "رقم الموظف غير صحيح ❌");
+                        } else if (!StoresConstants.EMP_MOBILE.equals(empMobile)) {
+                            CustomToast.customToast(getApplicationContext(), "رقم الهاتف غير صحيح ❌");
+                        } else if (!StoresConstants.EMP_USERNAME.equals(uName)) {
+                            CustomToast.customToast(getApplicationContext(), "اسم المستخدم غير صحيح ❌");
+                        }
+                        //Forget Password call
                         ForgetUserPassword.forgetUserPassword(getApplicationContext(),
                                 empId,
                                 empMobile,
                                 uName,
 //                                Upass);
                                 EncryptionUtil.encrypt(Upass));
-                        CustomToast.customToast(getApplicationContext(), "تم إرسال الطلب بنجاح");
-                        System.out.println("Forget Password button clicked end");
 
+                        CustomToast.customToast(getApplicationContext(), "تم تعيين كلمة المرور بنجاح ✅");
+
+                        System.out.println("Forget Password button clicked end");
+////
+                        //send sms using twilio
+//                        TwilioServicesToSendSms.sendSmsUsingTwilio(getApplicationContext(),"+201032743609",
+//                                "username: ahmed"+"\n"+
+//                                "password: 12345");
+
+                        //send sms using fast2sms
+//                        SmsSender.sendSms("+201032743609", "welcome to Stores App \n your_pass: 123456");
+
+
+                        //TODO://31-08-2024 send sms
+//                        SmsManager smsManager = SmsManager.getDefault();
+//                        smsManager.sendTextMessage("+201277175547", null, "username: ahmed"+"\n"+
+//                                "password: 12345" +"\n", null, null);
 
 //call forget user password method
 
@@ -117,12 +154,14 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
                                 finish();
                             }
                         }, 2000);
-                    }
+                    } catch (Exception e) {
+                        e.getMessage();
+                        System.out.println(e.getMessage());
+//                        CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
 
-                } catch (Exception e) {
-                    e.getStackTrace();
-                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة");
+                    }
                 }
+
 
                 //        hide keyboard after typed
                 try {
@@ -138,4 +177,6 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
 
 
     }
+
+
 }

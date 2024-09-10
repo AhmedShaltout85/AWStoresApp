@@ -35,7 +35,7 @@ public class RequestUser {
                                    String empMobile,
                                    String uName,
                                    String uPass,
-                                   String notes) {
+                                   String notes) throws SQLException, ClassNotFoundException {
         try {
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -107,8 +107,10 @@ public class RequestUser {
 
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-            CustomToast.customToast(context, "فضلا, برجاء أدخال بيانات صحيحة  ");
+            throw ex;
+//            System.out.println(ex.getMessage());
+//            ex.printStackTrace();
+//            CustomToast.customToast(context, "فضلا, برجاء أدخال بيانات صحيحة  ");
         } finally {
             if (connection != null) {
                 try {

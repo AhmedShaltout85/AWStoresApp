@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<!--    add sms permission-->
+<!--    <uses-permission android:name="android.permission.SEND_SMS"-->
+<!--        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />-->
+
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -36,10 +40,11 @@
             android:exported="false"
             android:parentActivityName=".views.LoginScreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
             android:name=".views.ChangePassword"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity
             android:name=".views.GetStoreReportInPeriodic"
@@ -61,12 +66,15 @@
             android:name=".views.AdvancedSearchScreen"
             android:parentActivityName=".views.MenuScreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
             android:name=".views.TopTenItemsMoreMovesScreen"
             android:parentActivityName=".views.MenuScreen" />
+
         <activity
             android:name=".views.DetailsScreen"
             android:parentActivityName=".views.FavoritesScreen" />
+
         <activity
             android:name=".views.FavoritesScreen"
             android:parentActivityName=".views.SearchScreen" />

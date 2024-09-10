@@ -60,7 +60,7 @@ public class ChangePassword extends AppCompatActivity {
                     CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
                 } else {
                     // Not Available...
-                    CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+                    CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌");
 
                 }
 
@@ -69,30 +69,17 @@ public class ChangePassword extends AppCompatActivity {
                     if (
                             currentPassword.isEmpty() &&
                                     newPassword.isEmpty() &&
-                                    confirmPassword.isEmpty()
-                    ) {
-                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة");
+                                    confirmPassword.isEmpty()) {
 
-//
-//                        ChangeUserPassword.changeUserPassword(
-//                                getApplicationContext(),
-//                                currentPassword,
-//                                newPassword);
-//
-//                        System.out.println("currentPassword = " + currentPassword + "\n " + "newPassword =  " + newPassword);
-//
-////                        CustomToast.customToast(getApplicationContext(), "إعادة التوجيهه الى صحفه دخول المستخدمين");
-//                        CustomLoader.customLoader(getApplicationContext(), "إعادة التوجيهه الى صحفه دخول المستخدمين");
-//
-//                        //redirect to login page
-//                        Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
-//                        startActivity(intent);
+                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة ❌");
 
                     } else if (!confirmPassword.equals(newPassword)) {
-                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة");
+
+                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة ❌");
 
                     } else if (!StoresConstants.CURRENT_PASSWORD.equals(currentPassword)) {
-                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة");
+
+                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة ❌");
 
                     } else {
 
@@ -103,27 +90,43 @@ public class ChangePassword extends AppCompatActivity {
 
                         System.out.println("currentPassword = " + currentPassword + "\n " + "newPassword =  " + newPassword);
 
-                        CustomToast.customToast(getApplicationContext(), "إعادة التوجيهه الى صحفه دخول المستخدمين");
+                        CustomToast.customToast(getApplicationContext(), "تم تغيير كلمة المرور بنجاح ✅" + "\n" + "سيتم تحويلك الى صحفه دخول المستخدمين");
 
                         new Handler().postDelayed(new Runnable() {
-                            @Override public void run() {
+                            @Override
+                            public void run() {
+                                //                        //redirect to login page
                                 Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
                                 startActivity(intent);
-                                finish(); } }, 2000);
+                                finish();
+                            }
+                        }, 2000);
 
-//                        //redirect to login page
-//                        Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
-//                        startActivity(intent);
-
-//                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة");
 
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    CustomToast.customToast(getApplicationContext(), "بيانات المستخدم غير صحيحة");
+                    CustomToast.customToast(getApplicationContext(), "بيانات المستخدم غير صحيحة ❌");
                 }
 
             }
         });
+    }
+
+    public void navToMenu(View view) {
+        Intent intent = new Intent(this, MenuScreen.class);
+        startActivity(intent);
+    }
+
+    //Go Back to MenuScreen//TODO:NOT REVIEWED (1-09-2024)
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(ChangePassword.this, MenuScreen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+
     }
 }

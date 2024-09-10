@@ -190,8 +190,11 @@ public class LoginScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // TODO: navToForgetPassword
+    // TODO: navToForgetPassword(31-08-2024)
     public void navToForgetPassword(View view) {
+//        CustomToast.customToast(this, "Forget Password Page in progress");
+////        SmsSender.sendSms("+201032743609", "welcome to Stores App \n your_pass: 123456");
+//        SmsSender.sendFastSms("welcome to Stores App \n your_pass: 123456", "+201032743609");
         Intent intent = new Intent(this, ForgetUserPasswordScreen.class);
         startActivity(intent);
     }

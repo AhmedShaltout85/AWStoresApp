@@ -57,13 +57,37 @@ public  class GetAllUserRequestInfoByEmpID {
                     StoresConstants.EMP_MOBILE = resultSet.getString("Emp_Mobile");
                     StoresConstants.EMP_JOB = resultSet.getString("Emp_Job");
                     StoresConstants.EMP_LOCATION = resultSet.getString("Emp_Location");
-                    CustomToast.customToast(context, "تم جلب بيانات الموظف بنجاح");
+                    StoresConstants.EMP_USERNAME = resultSet.getString("UName");
+                    StoresConstants.EMP_ID = resultSet.getString("Emp_ID");
+
+                    System.out.println(StoresConstants.EMP_ID);
+                    System.out.println(StoresConstants.EMP_USERNAME);
+                    System.out.println(StoresConstants.EMP_MOBILE);
+                    System.out.println(StoresConstants.EMP_JOB);
+                    System.out.println(StoresConstants.EMP_LOCATION);
+                    System.out.println(StoresConstants.EMP_NAME);
+
+                    CustomToast.customToast(context, "تم جلب بيانات الموظف بنجاح ✅");
                 }else {
-                    CustomToast.customToast(context, "لايوجد بيانات لهذا الموظف");
+                    StoresConstants.EMP_USERNAME = "";
+                    StoresConstants.EMP_MOBILE = "";
+                    StoresConstants.EMP_JOB = "";
+                    StoresConstants.EMP_LOCATION = "";
+                    StoresConstants.EMP_NAME = "";
+                    CustomToast.customToast(context, "لايوجد بيانات لهذا الموظف ❌");
                 }
             }
         } catch (Exception ex) {
-            throw new RuntimeException(ex);
+            System.out.println(ex.getMessage());
+//            CustomToast.customToast(context, "فضلا أدخل بيانات الموظف بشكل صحيح ❌");
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
         }
     }
 }

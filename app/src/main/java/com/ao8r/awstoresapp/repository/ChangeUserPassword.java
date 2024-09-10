@@ -50,14 +50,14 @@ public class ChangeUserPassword {
                 if (resultSet.next()) {
                     String message = resultSet.getString("Message");
                     System.out.println(message);
-                    CustomToast.customToast(context, "تم تغيير كلمة المرور بنجاح");
+                    CustomToast.customToast(context, "تم تغيير كلمة المرور بنجاح ✅");
                 }
 
 
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            CustomToast.customToast(context,"فضلا, برجاء أدخال بيانات صحيحة  ");
+            CustomToast.customToast(context,"فضلا, برجاء أدخال بيانات صحيحة ❌ ");
         } finally {
             if (connection != null) {
                 try {

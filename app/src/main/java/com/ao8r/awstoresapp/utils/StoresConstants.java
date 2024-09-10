@@ -19,6 +19,7 @@ public class StoresConstants {
     public static String EMP_LOCATION;
     public static String EMP_JOB;
     public static String EMP_MOBILE;
+    public static String EMP_USERNAME;
 
     //    public static  String NEW_PASSWORD;
     public static String CURRENT_PASSWORD;
@@ -63,4 +64,9 @@ public class StoresConstants {
     public static String URL_CONNECT_LINK;
     public static final String LOGIN_FILE_NAME = "storesBaseIp.txt";
     public static String BASE_IP = "baseIp";
+
+    //Twilio SMS Sender info
+    public static final String ACCOUNT_SID = "";
+    public static final String AUTH_TOKEN = "";
+    public static final String SENDER_PHONE_NUMBER = "";
 }

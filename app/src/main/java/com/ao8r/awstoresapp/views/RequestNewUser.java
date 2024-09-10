@@ -132,15 +132,15 @@ public class RequestNewUser extends AppCompatActivity {
 
                 try {
 
-                    if (empId.isEmpty() &&
-                            empName.isEmpty() &&
-                            empLocation.isEmpty() &&
-                            empJob.isEmpty() &&
-                            empMobile.isEmpty() &&
-                            uName.isEmpty() &&
+                    if (empId.isEmpty() ||
+                            empName.isEmpty() ||
+                            empLocation.isEmpty() ||
+                            empJob.isEmpty() ||
+                            empMobile.isEmpty() ||
+                            uName.isEmpty() ||
                             uPass.isEmpty()
                     ) {
-                        CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة");
+                        CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
                     } else {
                         System.out.println("before request user");
                         //request user method
@@ -161,7 +161,7 @@ public class RequestNewUser extends AppCompatActivity {
 //                        RetrieveEncryptedString.retrieveEncryptedString("11111");
                         //redirect to login page
 
-                        CustomToast.customToast(getApplicationContext(), "تم إرسال الطلب بنجاح");
+                        CustomToast.customToast(getApplicationContext(), "تم إرسال الطلب بنجاح ✅");
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -178,7 +178,7 @@ public class RequestNewUser extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.getStackTrace();
-                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة");
+                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
                 }
 
                 //        hide keyboard after typed
@@ -197,18 +197,25 @@ public class RequestNewUser extends AppCompatActivity {
     }
 
     public void getUserInfo(View view) {
+        empNameEditText.setText("");
+        empMobileEditText.setText("");
+        empJobEditText.setText("");
+        empLocationEditText.setText("");
+
         if (InternetConnection.checkConnection(getApplicationContext())) {
             // Its Available...
-            CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+            CustomToast.customToast(getApplicationContext(), "متصل بالانترنت ✅");
         } else {
             // Not Available...
-            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌");
 
         }
         if (empIdEditText.getText().toString().isEmpty()) {
-            CustomToast.customToast(getApplicationContext(), "من فضلك ادخل رقم الموظف");
+            CustomToast.customToast(getApplicationContext(), "من فضلك ادخل رقم الموظف ❌");
         } else {
-            CustomToast.customToast(getApplicationContext(),"فضلا أنتظر جارى جلب بيانات الموظف");
+            //get user info by emp id
+
+            CustomToast.customToast(getApplicationContext(),"فضلا أنتظر جارى جلب بيانات الموظف ✅");
             //get user info by emp id
             GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(
                     getApplicationContext(),

@@ -75,7 +75,7 @@ public class AdvancedSearchScreen extends AppCompatActivity {
 
 //
         getQueryByNameResult = findViewById(R.id.getSearchResultAdvanced);
-        itemNameEditTextAdvanced.requestFocus();
+//        itemNameEditTextAdvanced.requestFocus();
 
         //      initialise Recycler View Horizontal
         recyclerViewHorizontal = findViewById(R.id.advanceSearchHorizRecView);

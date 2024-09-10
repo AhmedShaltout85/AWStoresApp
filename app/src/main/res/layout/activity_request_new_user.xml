@@ -54,7 +54,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/colorAccent"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 tools:ignore="RtlCompat,TextFields" />
 
             <ImageButton
@@ -63,6 +63,7 @@
                 android:layout_height="45dp"
                 android:layout_marginVertical="5dp"
                 android:src="@drawable/add_task_24"
+                android:imeOptions="actionNext"
                 android:background="@color/colorAccent"
                 android:layout_marginEnd="10dp" />
             <EditText
@@ -217,11 +218,13 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="35dp"
             android:gravity="center_vertical"
+            android:textAlignment="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_corner_primary_color"
             android:text="@string/request_new_user_button"
             android:textColor="@android:color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:ignore="RtlCompat" />
 
 
     </LinearLayout>

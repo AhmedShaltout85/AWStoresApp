@@ -60,6 +60,8 @@
 
     <string name="forget_password">forget Password</string>
     <string name="setting">change IP Address</string>
+    <string name="more_ations_elements">الأصناف الأكثر حركة</string>
+    <string name="please_enter_ip_address">41.33.226.212</string>
 
 
 </resources>

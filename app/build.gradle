@@ -35,6 +35,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -84,6 +88,14 @@ dependencies {
 
 //    for creating pdf file
     implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.1'
+
+    //for sending sms using api twilio
+    implementation "com.twilio.sdk:twilio:10.4.2"
+
+    //for send sms using fast2sms
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
+
 
 
 }

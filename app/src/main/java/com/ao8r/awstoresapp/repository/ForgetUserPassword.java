@@ -18,102 +18,14 @@ import java.sql.CallableStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//
-//public class ForgetUserPassword {
-//static Connection connection;
-//
-//    public static void forgetUserPassword(Context context, String uPass, String uName, String empId, String empMobile) {
-//        try {
-////            connection = ConnectionHelper.getConnection();
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//
-//            //Import mssql driver
-//            Class.forName(SRC_DRIVER);
-//
-//            //create connection
-//            connection = DriverManager.getConnection(
-//                    "jdbc:jtds:sqlserver://" + HOST + ":" + PORT + "/" + DB_NAME
-//                    , USERNAME, PASSWORD);
-//
-//            if (connection == null) {
-//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
-//            } else {
-//
-//                //Query
-//                //"UPDATE Mob_User_Request" +
-//                //                        "SET UPass = ?" +
-//                //                        "WHERE " +
-//                //                        "Emp_ID = ? " +
-//                //                        "AND " +
-//                //                        "UName = ? " +
-//                //                        "AND " +
-//                //                        "Emp_Mobile = ?";
-//
-//                System.out.println("before update password query ----from repository");
-//                String updateQuery =
-//                        "UPDATE Mob_User_Request" +
-//                                "SET UPass = ?" +
-//                                "WHERE " +
-//                                "Emp_ID = ? " +
-//                                "AND " +
-//                                "UName = ? " +
-//                                "AND " +
-//                                "Emp_Mobile = ?";
-//
-//
-//                PreparedStatement statement = connection.prepareStatement(updateQuery);
-//
-//                System.out.println("after update password query----from repository");
-//
-//                statement.setString(1, uPass);
-//                statement.setString(2, empId);
-//                statement.setString(3, uName);
-//                statement.setString(4, empMobile);
-//
-//                ResultSet resultSet = statement.executeQuery();
-//                System.out.println("after update password query-from repository");
-//
-//                if (resultSet.next()) {
-//                    System.out.println("success update password query");
-//                    String message = resultSet.getString("Message");
-//                    System.out.println(message);
-//                    CustomToast.customToast(context, "تم تغيير كلمة المرور بنجاح");
-//                }
-//
-//
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//            CustomToast.customToast(context, "فضلا, برجاء أدخال بيانات صحيحة  ");
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        } finally {
-//            if (connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//        }
-//    }
-//}
 public class ForgetUserPassword {
-//    static Connection connection;
-//    private static final String HOST = "41.33.226.212";
-//    private static final int PORT = 5010;
-//    private static final String DB_NAME = "awco";
-//    private static final String USERNAME = "awco";
-//    private static final String PASSWORD = "awco";
-//    private static final String SRC_DRIVER = "net.sourceforge.jtds.jdbc.Driver";
+
 
     public static void forgetUserPassword(Context context,
-                                   String empId,
-                                   String empMobile,
-                                   String uName,
-                                   String uPass) {
+                                          String empId,
+                                          String empMobile,
+                                          String uName,
+                                          String uPass) throws SQLException, ClassNotFoundException { //throws SQLException
         try {
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -122,13 +34,13 @@ public class ForgetUserPassword {
             //Import mssql driver
             Class.forName(SRC_DRIVER);
 
-            //ceate connection
+            //create connection
             connection = DriverManager.getConnection(
-                    "jdbc:jtds:sqlserver://"+HOST+":"+PORT+"/"+DB_NAME
+                    "jdbc:jtds:sqlserver://" + HOST + ":" + PORT + "/" + DB_NAME
                     , USERNAME, PASSWORD);
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم ❌");
             } else {
 
                 System.out.println("before insert procedure");
@@ -151,28 +63,27 @@ public class ForgetUserPassword {
                 statement.setString(4, empMobile);
 
 
-                Boolean result = statement.execute();
+                boolean result = statement.execute();
 
                 System.out.println("after insert procedure execution");
 
-                if(!result){
+                if (!result) {
                     System.out.println("stored procedure executed successfully");
-                }else {
+                } else {
                     System.out.println("stored procedure executed failed");
                 }
 
-
-
             }
-        } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-            CustomToast.customToast(context, "فضلا, برجاء أدخال بيانات صحيحة  ");
+        } catch (Exception ex) {
+            throw ex; //pass the exception to the caller
+//            ex.getMessage();
+//            System.out.println(ex.getMessage());
         } finally {
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    e.getMessage();
                 }
             }
 

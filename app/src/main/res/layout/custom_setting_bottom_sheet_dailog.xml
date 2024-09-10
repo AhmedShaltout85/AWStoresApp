@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="50dp"
-            android:hint="Please Enter IP address"
+            android:hint="@string/please_enter_ip_address"
             android:inputType="text"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="13sp" />
