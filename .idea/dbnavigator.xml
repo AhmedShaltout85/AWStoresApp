@@ -47,6 +47,47 @@ and Emp_Mobile = '01280772550']]></console>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs>
+        <execution-input execution-timeout="30" debug-execution-timeout="600" session-id="MAIN" context-expanded="false" enable-logging="false" commit-after-execution="false" connection-id="df967459-fd4e-450a-9562-e92950f0ee20" object-ref="schemas/dbo/functions/Forget_Password" execution-schema="dbo">
+          <argument-values>
+            <argument name="@UserMobile">
+              <value>01032743609</value>
+            </argument>
+            <argument name="@EmpID">
+              <value>55041</value>
+            </argument>
+            <argument name="@UserPassword">
+              <value>321</value>
+            </argument>
+            <argument name="@UserName">
+              <value>Ahmed</value>
+            </argument>
+          </argument-values>
+        </execution-input>
+      </execution-inputs>
+      <selection connection-id="df967459-fd4e-450a-9562-e92950f0ee20" object-ref="schemas/dbo/functions/Forget_Password" />
+    </execution-history>
+    <argument-values-cache>
+      <connection connection-id="df967459-fd4e-450a-9562-e92950f0ee20">
+        <argument name="@UserMobile">
+          <value>01032743609</value>
+        </argument>
+        <argument name="@EmpID">
+          <value>55041</value>
+        </argument>
+        <argument name="@UserPassword">
+          <value>321</value>
+        </argument>
+        <argument name="@UserName">
+          <value>Ahmed</value>
+        </argument>
+      </connection>
+    </argument-values-cache>
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />

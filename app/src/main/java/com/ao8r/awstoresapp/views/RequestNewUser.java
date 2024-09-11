@@ -226,6 +226,15 @@ public class RequestNewUser extends AppCompatActivity {
             empJobEditText.setText(StoresConstants.EMP_JOB);
             empLocationEditText.setText(StoresConstants.EMP_LOCATION);
         }
+        //        hide keyboard after typed
+        try {
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
     }
 }
 
