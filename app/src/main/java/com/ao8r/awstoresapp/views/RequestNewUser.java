@@ -197,10 +197,7 @@ public class RequestNewUser extends AppCompatActivity {
     }
 
     public void getUserInfo(View view) {
-        empNameEditText.setText("");
-        empMobileEditText.setText("");
-        empJobEditText.setText("");
-        empLocationEditText.setText("");
+ 
 
         if (InternetConnection.checkConnection(getApplicationContext())) {
             // Its Available...
@@ -226,6 +223,7 @@ public class RequestNewUser extends AppCompatActivity {
             empJobEditText.setText(StoresConstants.EMP_JOB);
             empLocationEditText.setText(StoresConstants.EMP_LOCATION);
         }
+
         //        hide keyboard after typed
         try {
 
