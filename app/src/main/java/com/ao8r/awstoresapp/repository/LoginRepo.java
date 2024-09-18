@@ -41,6 +41,15 @@ public class LoginRepo {
                     CustomToast.customToast(context, "تم تسجيل الدخول بنجاح ✅");
                     StoresConstants.CURRENT_USER_ID = resultSet.getInt("ID");
                     StoresConstants.USER_CONTROL = resultSet.getInt("Flag");
+                    StoresConstants.STORE_NUMBER = resultSet.getInt("Store_num");
+                    StoresConstants.STORE_SECTOR = resultSet.getString("Sector");
+
+                    System.out.println(
+                            "User Credentials: \n ID \n Flag \n Store_num \n Sector\n"+
+                                    resultSet.getInt("ID")+"\n"+
+                                    resultSet.getInt("Flag")+"\n"+
+                                    resultSet.getString("Store_num")+"\n"+
+                                    resultSet.getString("Sector"));
 
 //            used with security levels
 

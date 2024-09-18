@@ -197,7 +197,7 @@ public class RequestNewUser extends AppCompatActivity {
     }
 
     public void getUserInfo(View view) {
- 
+
 
         if (InternetConnection.checkConnection(getApplicationContext())) {
             // Its Available...

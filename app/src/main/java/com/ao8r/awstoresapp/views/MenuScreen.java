@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.ao8r.awstoresapp.R;
+import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 public class MenuScreen extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class MenuScreen extends AppCompatActivity {
 
         toolbarMenu.setSubtitle(StoresConstants.LOGIN_USER);
         toolbarMenu.setSubtitleTextColor(Color.WHITE);
-        toolbarMenu.setPadding(1,2,1,2);
+        toolbarMenu.setPadding(1, 2, 1, 2);
 //        set title
         setTitle(StoresConstants.MENU_TITLE);
 //        setTitle("القائمة الرئيسية");
@@ -120,16 +121,22 @@ public class MenuScreen extends AppCompatActivity {
     }
 
     public void navToGetReportForCertainStore(View view) {
-        Intent intent = new Intent(this, GetStoreReport.class);
-        startActivity(intent);
+        if (StoresConstants.USER_CONTROL == 4) {
+            CustomToast.customToast(this, "لا يمكن عرض التقارير للمستخدم المسؤول");
+        } else {
+            Intent intent = new Intent(this, GetStoreReport.class);
+            startActivity(intent);
+        }
     }
 
     public void navToGetStoreReportInPeriodic(View view) {
-
-        Intent intent = new Intent(this, GetStoreReportInPeriodic.class);
-        startActivity(intent);
+        if (StoresConstants.USER_CONTROL == 4) {
+            CustomToast.customToast(this, "لا يمكن عرض التقارير للمستخدم المسؤول");
+        } else {
+            Intent intent = new Intent(this, GetStoreReportInPeriodic.class);
+            startActivity(intent);
+        }
     }
-
 
 
 }

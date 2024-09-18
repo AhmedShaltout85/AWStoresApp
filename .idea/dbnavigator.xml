@@ -21,7 +21,19 @@
 set UPass = 1234567
 where Emp_ID = 55052 
 and UName = 'Omar'
-and Emp_Mobile = '01280772550']]></console>
+and Emp_Mobile = '01280772550'
+
+
+--SELECT STORE NAME FROM STORES TABLE BY STORE SECTOR
+
+SELECT store_name FROM stores_data WHERE store_sector = 'شرق'ORDER BY store_num ASC;
+
+--SELECT STORE NAME FROM STORES TABLE BY STORE NUM
+SELECT
+    store_name
+FROM
+    stores_data 
+WHERE store_num = 3;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -29,19 +41,23 @@ and Emp_Mobile = '01280772550']]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="df967459-fd4e-450a-9562-e92950f0ee20" object-ref="schemas/dbo/tables/Mob_User_Request" />
+      <object connection-id="df967459-fd4e-450a-9562-e92950f0ee20" object-ref="schemas/dbo/tables/Mob_Users" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="df967459-fd4e-450a-9562-e92950f0ee20" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="df967459-fd4e-450a-9562-e92950f0ee20" dataset="dbo.stores_data" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="df967459-fd4e-450a-9562-e92950f0ee20" dataset="dbo.Mob_User_Request" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="df967459-fd4e-450a-9562-e92950f0ee20" dataset="dbo.stores" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="df967459-fd4e-450a-9562-e92950f0ee20" dataset="dbo.Mob_Users" active-filter-id="EMPTY_FILTER">
       <filter id="cc2f91ee-ec51-4568-a033-ef3ca5be8fcd" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="Flag" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
+    <filter-actions connection-id="df967459-fd4e-450a-9562-e92950f0ee20" dataset="dbo.store_name" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="df967459-fd4e-450a-9562-e92950f0ee20" dataset="dbo.store_codes" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="df967459-fd4e-450a-9562-e92950f0ee20" dataset="dbo.Mob_Favourite" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

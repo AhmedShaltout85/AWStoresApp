@@ -31,6 +31,8 @@ import com.ao8r.awstoresapp.customiz_widgets.ExportAsPdfFile;
 import com.ao8r.awstoresapp.models.StoreReportModel;
 import com.ao8r.awstoresapp.models.StoresNamesModel;
 import com.ao8r.awstoresapp.repository.GetAllInCertainStoreInPeriodicDate;
+import com.ao8r.awstoresapp.repository.GetAllStoresNamesBySectorNameDropdown;
+import com.ao8r.awstoresapp.repository.GetAllStoresNamesByStoreNumDropdown;
 import com.ao8r.awstoresapp.repository.GetAllStoresNamesDropdown;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
@@ -43,6 +45,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -166,7 +169,6 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                 }
             }
         });
-
 
 
         //from Date
@@ -300,7 +302,29 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
 
         try {
 
-            spinnerStoreNamePeriodicArrayList = GetAllStoresNamesDropdown.getAllStoresNamesDropdown(getApplicationContext());
+            if (StoresConstants.USER_CONTROL == 1 &&
+                    StoresConstants.STORE_NUMBER == 0 &&
+                    Objects.equals(StoresConstants.STORE_SECTOR, "0")) {
+
+                //get all store names
+                spinnerStoreNamePeriodicArrayList = GetAllStoresNamesDropdown.getAllStoresNamesDropdown(getApplicationContext());
+            } else if (!Objects.equals(StoresConstants.STORE_SECTOR, "0")) {
+
+                //get all store names by sector name
+                spinnerStoreNamePeriodicArrayList = GetAllStoresNamesBySectorNameDropdown.getAllStoresNamesBySectorNameDropdown(getApplicationContext());
+            } else if (StoresConstants.STORE_NUMBER != 0) {
+
+                //get all store names by store num
+                spinnerStoreNamePeriodicArrayList = GetAllStoresNamesByStoreNumDropdown.getAllStoresNamesByStoreNumDropdown(getApplicationContext());
+            } else {
+                CustomToast.customToast(getApplicationContext(), "عفو ليس لديك صلاحية لعرض البيانات");
+            }
+            //get all store names
+//            spinnerStoreNamePeriodicArrayList = GetAllStoresNamesDropdown.getAllStoresNamesDropdown(getApplicationContext());
+            //get all store names by sector name
+//            spinnerStoreNamePeriodicArrayList = GetAllStoresNamesBySectorNameDropdown.getAllStoresNamesBySectorNameDropdown(getApplicationContext());
+            //get all store names by store num
+//            spinnerStoreNamePeriodicArrayList = GetAllStoresNamesByStoreNumDropdown.getAllStoresNamesByStoreNumDropdown(getApplicationContext());
         } catch (Exception e) {
             CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
         }
