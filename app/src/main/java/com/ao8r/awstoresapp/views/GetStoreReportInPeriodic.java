@@ -309,11 +309,9 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                 //get all store names
                 spinnerStoreNamePeriodicArrayList = GetAllStoresNamesDropdown.getAllStoresNamesDropdown(getApplicationContext());
             } else if (!Objects.equals(StoresConstants.STORE_SECTOR, "0")) {
-
                 //get all store names by sector name
                 spinnerStoreNamePeriodicArrayList = GetAllStoresNamesBySectorNameDropdown.getAllStoresNamesBySectorNameDropdown(getApplicationContext());
             } else if (StoresConstants.STORE_NUMBER != 0) {
-
                 //get all store names by store num
                 spinnerStoreNamePeriodicArrayList = GetAllStoresNamesByStoreNumDropdown.getAllStoresNamesByStoreNumDropdown(getApplicationContext());
             } else {

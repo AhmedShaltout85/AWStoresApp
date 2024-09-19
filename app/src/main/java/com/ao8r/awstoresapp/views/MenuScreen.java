@@ -122,7 +122,7 @@ public class MenuScreen extends AppCompatActivity {
 
     public void navToGetReportForCertainStore(View view) {
         if (StoresConstants.USER_CONTROL == 4) {
-            CustomToast.customToast(this, "لا يمكن عرض التقارير للمستخدم المسؤول");
+            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
         } else {
             Intent intent = new Intent(this, GetStoreReport.class);
             startActivity(intent);
@@ -131,7 +131,7 @@ public class MenuScreen extends AppCompatActivity {
 
     public void navToGetStoreReportInPeriodic(View view) {
         if (StoresConstants.USER_CONTROL == 4) {
-            CustomToast.customToast(this, "لا يمكن عرض التقارير للمستخدم المسؤول");
+            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
         } else {
             Intent intent = new Intent(this, GetStoreReportInPeriodic.class);
             startActivity(intent);
