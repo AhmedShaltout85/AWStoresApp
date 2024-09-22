@@ -10,6 +10,7 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.USERNAME;
 import static com.ao8r.awstoresapp.utils.StoresConstants.connection;
 
 import android.os.StrictMode;
+import android.widget.Toast;
 
 import com.ao8r.awstoresapp.utils.EncryptionUtil;
 
@@ -17,6 +18,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import es.dmoral.toasty.Toasty;
 
 public  class RetrieveEncryptedString {
 
@@ -43,6 +46,7 @@ public  class RetrieveEncryptedString {
                     , USERNAME, PASSWORD);
 
             if (connection == null) {
+                Toasty.error(null, "عفو لايمكن الأتصال بالخادم", Toast.LENGTH_SHORT, true).show();
             } else {
                 String query = "SELECT * FROM Mob_User_Request WHERE Emp_ID = ?";
 

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -49,6 +50,8 @@ import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import es.dmoral.toasty.Toasty;
 
 public class GetStoreReportInPeriodic extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -118,9 +121,11 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
             @Override
             public void onClick(View v) {
                 if (StoresConstants.START_DATE.isEmpty() || StoresConstants.END_DATE.isEmpty()) {
-                    CustomToast.customToast(getApplicationContext(), "فضلا أختر التاريخ");
+//                    CustomToast.customToast(getApplicationContext(), "فضلا أختر التاريخ");
+                    Toasty.info(getApplicationContext(), "فضلا أختر التاريخ", Toasty.LENGTH_SHORT, true).show();
                 } else {
-                    CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات");
+                    Toasty.info(getApplicationContext(), "أنتظر جارى جلب البيانات", Toasty.LENGTH_SHORT, true).show();
+//                    CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات");
                     //        get all items in Certain store
                     storeReportPeriodicModelArrayList.clear();
                     storeReportInCertainPeriodDateAdapter.notifyDataSetChanged();
@@ -142,7 +147,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
 
                                 GetAllInCertainStoreInPeriodicDate.getAllInCertainStoreInPeriodicDate(getApplicationContext(), storeReportPeriodicModelArrayList);
                             } catch (Exception e) {
-                                CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//                                CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                                Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toasty.LENGTH_SHORT, true).show();
                             }
 
 //                        storeReportInCertainPeriodDateAdapter.notifyItemInserted(storeReportPeriodicModelArrayList.size() - 1);
@@ -154,11 +160,13 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                                     if (storeReportPeriodicModelArrayList.size() >= 1) {
 //                                    GetAllInCertainStoreInPeriodicDate.getAllInCertainStoreInPeriodicDate(getApplicationContext(), storeReportPeriodicModelArrayList);
                                         storeReportInCertainPeriodDateAdapter.notifyItemInserted(storeReportPeriodicModelArrayList.size() - 1);
-                                        CustomToast.customToast(getApplicationContext(), storeReportPeriodicModelArrayList.size() + " حركه / حركات");
+//                                        CustomToast.customToast(getApplicationContext(), storeReportPeriodicModelArrayList.size() + " حركه / حركات");
+                                        Toasty.info(getApplicationContext(), storeReportPeriodicModelArrayList.size() + " حركه / حركات", Toasty.LENGTH_SHORT, true).show();
 
 
                                     } else {
-                                        CustomToast.customToast(getApplicationContext(), "لايوجد بيانات فى هذه الفتره");
+//                                        CustomToast.customToast(getApplicationContext(), "لايوجد بيانات فى هذه الفتره");
+                                        Toasty.warning(getApplicationContext(), "لايوجد بيانات فى هذه الفتره", Toasty.LENGTH_SHORT, true).show();
 
                                     }
                                 }
@@ -190,7 +198,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                         StoresConstants.START_DATE = format.format(calendar.getTime());
                         fromDate.setText(StoresConstants.START_DATE);
-                        CustomToast.customToast(getApplicationContext(), StoresConstants.START_DATE);
+//                        CustomToast.customToast(getApplicationContext(), StoresConstants.START_DATE);
+                        Toasty.info(getApplicationContext(), StoresConstants.START_DATE, Toasty.LENGTH_SHORT, true).show();
                         System.out.println(StoresConstants.START_DATE);
 
                     }
@@ -210,7 +219,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                 String dateInString = new SimpleDateFormat(pattern).format(new Date());
                 StoresConstants.END_DATE = dateInString;
                 toDate.setText(StoresConstants.END_DATE);
-                CustomToast.customToast(getApplicationContext(), "لتخصيص تاريخ معين أضغط 3 ثوان");
+//                CustomToast.customToast(getApplicationContext(), "لتخصيص تاريخ معين أضغط 3 ثوان");
+                Toasty.info(getApplicationContext(), "لتخصيص تاريخ معين أضغط 3 ثوان", Toasty.LENGTH_SHORT, true).show();
                 System.out.println(StoresConstants.END_DATE);
 
 
@@ -232,7 +242,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                         StoresConstants.END_DATE = format.format(calendar.getTime());
                         toDate.setText(StoresConstants.END_DATE);
-                        CustomToast.customToast(getApplicationContext(), StoresConstants.END_DATE);
+//                        CustomToast.customToast(getApplicationContext(), StoresConstants.END_DATE);
+                        Toasty.info(getApplicationContext(), StoresConstants.END_DATE, Toasty.LENGTH_SHORT, true).show();
                         System.out.println(StoresConstants.END_DATE);
 
                     }
@@ -248,9 +259,11 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
             @Override
             public void onClick(View v) {
                 if (storeReportPeriodicModelArrayList.isEmpty()) {
-                    CustomToast.customToast(getApplicationContext(), "فضلا اختر المخزن اولا");
+//                    CustomToast.customToast(getApplicationContext(), "فضلا اختر المخزن اولا");
+                    Toasty.info(getApplicationContext(), "فضلا اختر المخزن اولا", Toasty.LENGTH_SHORT, true).show();
                 } else {
-                    CustomToast.customToast(getApplicationContext(), "أنتظر جارى حفظ الملف فى Documents");
+//                    CustomToast.customToast(getApplicationContext(), "أنتظر جارى حفظ الملف فى Documents");
+                    Toasty.info(getApplicationContext(), "أنتظر جارى حفظ الملف فى Documents", Toasty.LENGTH_SHORT, true).show();
                     try {
                         ExportAsExcelSheet.exportStoreReportInPeriodicDateAsExcelSheet(
                                 "كود الصنف",
@@ -315,7 +328,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
                 //get all store names by store num
                 spinnerStoreNamePeriodicArrayList = GetAllStoresNamesByStoreNumDropdown.getAllStoresNamesByStoreNumDropdown(getApplicationContext());
             } else {
-                CustomToast.customToast(getApplicationContext(), "عفو ليس لديك صلاحية لعرض البيانات");
+//                CustomToast.customToast(getApplicationContext(), "عفو ليس لديك صلاحية لعرض البيانات");
+                Toasty.error(getApplicationContext(), "عفو ليس لديك صلاحية لعرض البيانات", Toast.LENGTH_SHORT, true).show();
             }
             //get all store names
 //            spinnerStoreNamePeriodicArrayList = GetAllStoresNamesDropdown.getAllStoresNamesDropdown(getApplicationContext());
@@ -324,7 +338,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
             //get all store names by store num
 //            spinnerStoreNamePeriodicArrayList = GetAllStoresNamesByStoreNumDropdown.getAllStoresNamesByStoreNumDropdown(getApplicationContext());
         } catch (Exception e) {
-            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+            Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
         }
         ArrayAdapter<StoresNamesModel> spinnerStoreNamesPeriodicAdapter =
                 new ArrayAdapter<StoresNamesModel>(
@@ -349,7 +364,8 @@ public class GetStoreReportInPeriodic extends AppCompatActivity implements Adapt
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        CustomToast.customToast(getApplicationContext(), "فضلا أختر أسم المخزن");
+        Toasty.warning(getApplicationContext(), "فضلا أختر أسم المخزن", Toast.LENGTH_SHORT, true).show();
+//        CustomToast.customToast(getApplicationContext(), "فضلا أختر أسم المخزن");
         getResultItemsReportPeriodicBtn.setVisibility(View.INVISIBLE);
 
     }

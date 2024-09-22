@@ -1,9 +1,9 @@
 package com.ao8r.awstoresapp.repository;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.StoresNamesModel;
 
 import java.sql.Connection;
@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class GetAllStoresNamesDropdown {
@@ -22,9 +24,11 @@ public class GetAllStoresNamesDropdown {
             connection = ConnectionHelper.getConnection();
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toast.LENGTH_SHORT, true).show();
             } else {
-                CustomToast.customToast(context, "جارى الأتصال بقاعدة البيانات");
+                Toasty.info(context, "جارى الأتصال بقاعدة البيانات", Toast.LENGTH_SHORT, true).show();
+//                CustomToast.customToast(context, "جارى الأتصال بقاعدة البيانات");
                 //Query
 //              "SELECT * FROM Branch";
 

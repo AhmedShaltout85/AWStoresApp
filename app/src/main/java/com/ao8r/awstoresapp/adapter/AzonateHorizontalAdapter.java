@@ -14,7 +14,6 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ao8r.awstoresapp.R;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
 import com.ao8r.awstoresapp.models.FavoritesModel;
 import com.ao8r.awstoresapp.repository.AddItemsToFavoritesRepo;
@@ -23,6 +22,8 @@ import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.ao8r.awstoresapp.views.DetailsScreen;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class AzonateHorizontalAdapter extends RecyclerView.Adapter<AzonateHorizontalAdapter.ViewHolder> {
 
@@ -64,7 +65,8 @@ public class AzonateHorizontalAdapter extends RecyclerView.Adapter<AzonateHorizo
                     context.startActivity(intent);
                 } catch (Exception e) {
                     e.getStackTrace();
-                    CustomToast.customToast(context.getApplicationContext(), "عفو لا يوجد تفاصيل لهذا العنصر");
+                    Toasty.error(context.getApplicationContext(), "عفو لا يوجد تفاصيل لهذا العنصر", Toasty.LENGTH_SHORT, true).show();
+//                    CustomToast.customToast(context.getApplicationContext(), "عفو لا يوجد تفاصيل لهذا العنصر");
                 }
             }
         });

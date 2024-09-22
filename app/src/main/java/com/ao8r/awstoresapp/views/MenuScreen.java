@@ -7,13 +7,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.ao8r.awstoresapp.R;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.utils.StoresConstants;
+
+import es.dmoral.toasty.Toasty;
 
 public class MenuScreen extends AppCompatActivity {
 
@@ -122,7 +124,8 @@ public class MenuScreen extends AppCompatActivity {
 
     public void navToGetReportForCertainStore(View view) {
         if (StoresConstants.USER_CONTROL == 4) {
-            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
+//            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
+            Toasty.error(this, "لا يمكن عرض التقارير لهذا المستخدم", Toast.LENGTH_SHORT, true).show();
         } else {
             Intent intent = new Intent(this, GetStoreReport.class);
             startActivity(intent);
@@ -131,7 +134,8 @@ public class MenuScreen extends AppCompatActivity {
 
     public void navToGetStoreReportInPeriodic(View view) {
         if (StoresConstants.USER_CONTROL == 4) {
-            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
+//            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
+            Toasty.error(this, "لا يمكن عرض التقارير لهذا المستخدم", Toast.LENGTH_SHORT, true).show();
         } else {
             Intent intent = new Intent(this, GetStoreReportInPeriodic.class);
             startActivity(intent);

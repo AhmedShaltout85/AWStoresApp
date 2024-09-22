@@ -1,15 +1,17 @@
 package com.ao8r.awstoresapp.repository;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class ChangeUserPassword {
@@ -20,8 +22,11 @@ public class ChangeUserPassword {
             connection = ConnectionHelper.getConnection();
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toast.LENGTH_SHORT, true).show();
+
+//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
             } else {
+
 
                 //Query
                 //"EXEC	[dbo].[UpdatePass]
@@ -50,14 +55,16 @@ public class ChangeUserPassword {
                 if (resultSet.next()) {
                     String message = resultSet.getString("Message");
                     System.out.println(message);
-                    CustomToast.customToast(context, "تم تغيير كلمة المرور بنجاح ✅");
+//                    CustomToast.customToast(context, "تم تغيير كلمة المرور بنجاح ✅");
+                    Toasty.success(context, "تم تغيير كلمة المرور بنجاح ✅", Toast.LENGTH_SHORT, true).show();
                 }
 
 
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            CustomToast.customToast(context,"فضلا, برجاء أدخال بيانات صحيحة ❌ ");
+//            CustomToast.customToast(context,"فضلا, برجاء أدخال بيانات صحيحة ❌ ");
+            Toasty.error(context, "فضلا, برجاء أدخال بيانات صحيحة ❌ ", Toast.LENGTH_SHORT, true).show();
         } finally {
             if (connection != null) {
                 try {

@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,8 @@ import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class SearchScreen extends AppCompatActivity {
     double totalQty;
@@ -57,7 +60,7 @@ public class SearchScreen extends AppCompatActivity {
         setSupportActionBar(toolbarSearch);
         toolbarSearch.setSubtitle(StoresConstants.LOGIN_USER);
         toolbarSearch.setSubtitleTextColor(Color.WHITE);
-        toolbarSearch.setPadding(1,2,1,2);
+        toolbarSearch.setPadding(1, 2, 1, 2);
 //       set title
         setTitle(StoresConstants.SEARCH_TITLE);
 
@@ -136,8 +139,10 @@ public class SearchScreen extends AppCompatActivity {
                 if (InternetConnection.checkConnection(getApplicationContext())) {
                     // Its Available...
                     CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+//                    Toasty.success(getApplicationContext(), "متصل بالانترنت ✅", Toast.LENGTH_SHORT, true).show();
                 } else {
                     // Not Available...
+//                    Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌", Toast.LENGTH_SHORT, true).show();
                     CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
 
                 }
@@ -147,7 +152,8 @@ public class SearchScreen extends AppCompatActivity {
                     totalQty = GetTotalQuantityRepo.getSumTotalQuantity(getApplicationContext());
                     storesTotalQuantity.setText("الرصيد الكلى فى المخازن: " + "  " + totalQty); //assign value to text
                 } catch (Exception e) {
-                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                    Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
                 }
 
 
@@ -160,7 +166,8 @@ public class SearchScreen extends AppCompatActivity {
                             StoresConstants.ITEM_NUMBER,
                             azonateModelArrayList);
                 } catch (Exception e) {
-                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                    Toasty.error(getApplicationContext(), "حدث خطا فى الاتصال بالخادم", Toast.LENGTH_SHORT, true).show();
+//                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
                 }
 
 
@@ -175,7 +182,8 @@ public class SearchScreen extends AppCompatActivity {
 
                     CheckItemExistsInFavoritesRepo.getItemNoFromFavoritesRepo(getApplicationContext());
                 } catch (Exception e) {
-                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                    Toasty.error(getApplicationContext(), "حدث خطا فى الاتصال بالخادم", Toast.LENGTH_SHORT, true).show();
+//                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
                 }
 
                 if (StoresConstants.FAV_ITEM_NUMBER == StoresConstants.ITEM_NUMBER) {
@@ -196,7 +204,8 @@ public class SearchScreen extends AppCompatActivity {
             }
         } catch (Exception e) {
             e.getStackTrace();
-            CustomToast.customToast(getApplicationContext(), "حدث خطا فى الاتصال بالخادم");
+//            CustomToast.customToast(getApplicationContext(), "حدث خطا فى الاتصال بالخادم");
+            Toasty.error(getApplicationContext(), "حدث خطا فى الاتصال بالخادم", Toast.LENGTH_SHORT, true).show();
         }
 
     }
@@ -206,20 +215,22 @@ public class SearchScreen extends AppCompatActivity {
 
         if (StoresConstants.FAV_ITEM_NUMBER == StoresConstants.ITEM_NUMBER) {
             addToFavImg.setImageResource(R.drawable.ic_favorite_white);
-            CustomToast.customToast(getApplicationContext(), "هذا الصنف موجود مسبقا");
-
+//            CustomToast.customToast(getApplicationContext(), "هذا الصنف موجود مسبقا");
+            Toasty.warning(getApplicationContext(), "هذا الصنف موجود مسبقا", Toast.LENGTH_SHORT, true).show();
         } else {
 
 //        call AddItemsToFavs
             if (itemNumberEditText.getText().toString().isEmpty()) {
-                CustomToast.customToast(getApplicationContext(), "فضلا أدخل رقم الصنف");
+//                CustomToast.customToast(getApplicationContext(), "فضلا أدخل رقم الصنف");
+                Toasty.warning(getApplicationContext(), "فضلا أدخل رقم الصنف", Toast.LENGTH_SHORT, true).show();
             } else {
                 try {
                     addToFavImg.setImageResource(R.drawable.add_to_favorites);
                     AddItemsToFavoritesRepo.insertItemsToFavorites(getApplicationContext(), view);
                     addToFavImg.setImageResource(R.drawable.ic_favorite_white);
                 } catch (Exception e) {
-                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                    Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
                 }
 
             }

@@ -1,9 +1,9 @@
 package com.ao8r.awstoresapp.repository;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
 
 import java.sql.Connection;
@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class GetAllMatchItemsByNameRepo {
     static Connection connection;
@@ -20,7 +22,8 @@ public class GetAllMatchItemsByNameRepo {
             connection = ConnectionHelper.getConnection();
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toast.LENGTH_SHORT, true).show();
             } else {
 
                 //Query

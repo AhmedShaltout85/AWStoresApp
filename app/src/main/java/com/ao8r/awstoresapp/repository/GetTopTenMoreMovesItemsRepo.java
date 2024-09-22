@@ -8,7 +8,6 @@ import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class GetTopTenMoreMovesItemsRepo {
     static Connection connection;
@@ -30,7 +31,8 @@ public class GetTopTenMoreMovesItemsRepo {
             connection = ConnectionHelper.getConnection();
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toasty.LENGTH_SHORT, true).show();
             } else {
 
                 //Query

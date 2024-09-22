@@ -4,6 +4,7 @@ package com.ao8r.awstoresapp.views;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,13 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.AzonateAdapter;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
 import com.ao8r.awstoresapp.repository.GetSingleStoreTotalQuantityRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class DetailsScreen extends AppCompatActivity {
     //    declare vars
@@ -63,11 +65,12 @@ public class DetailsScreen extends AppCompatActivity {
 
         if (InternetConnection.checkConnection(getApplicationContext())) {
             // Its Available...
-            CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+//            CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+            Toasty.success(getApplicationContext(), "متصل بالانترنت", Toast.LENGTH_SHORT, true).show();
         } else {
             // Not Available...
-            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
-
+//            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+            Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت", Toast.LENGTH_SHORT, true).show();
         }
 
 
@@ -80,7 +83,8 @@ public class DetailsScreen extends AppCompatActivity {
                     detailsModelArrayList);
         } catch (Exception e) {
 
-            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+            Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
         }
 
 

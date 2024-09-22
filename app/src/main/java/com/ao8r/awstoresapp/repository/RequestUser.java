@@ -11,12 +11,13 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.connection;
 
 import android.content.Context;
 import android.os.StrictMode;
-
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
+import android.widget.Toast;
 
 import java.sql.CallableStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import es.dmoral.toasty.Toasty;
 
 public class RequestUser {
 //    static Connection connection;
@@ -50,7 +51,8 @@ public class RequestUser {
                     , USERNAME, PASSWORD);
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toast.LENGTH_SHORT, true).show();
             } else {
 
                 System.out.println("before insert procedure");

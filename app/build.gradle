@@ -95,7 +95,11 @@ dependencies {
     //for send sms using fast2sms
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 
+    //toast
+    implementation 'com.github.GrenderG:Toasty:1.5.2'
 
+    //shimmer effect (loader animation)
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 
 }

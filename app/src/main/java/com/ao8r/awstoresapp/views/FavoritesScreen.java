@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,12 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.FavoritesAdapter;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.FavoritesModel;
 import com.ao8r.awstoresapp.repository.GetAllFavsRepo;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class FavoritesScreen extends AppCompatActivity {
 
@@ -62,7 +64,8 @@ public class FavoritesScreen extends AppCompatActivity {
 
             GetAllFavsRepo.getAllFavsRepo(getApplicationContext(), favoritesModelList);
         } catch (Exception e) {
-            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+            Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
         }
 
 

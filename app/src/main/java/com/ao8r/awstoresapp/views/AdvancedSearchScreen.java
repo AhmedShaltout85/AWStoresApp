@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.AzonateHorizontalAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomSnackBar;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
 import com.ao8r.awstoresapp.repository.GetAllMatchItemsByNameRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
@@ -32,8 +31,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import es.dmoral.toasty.Toasty;
+
 public class AdvancedSearchScreen extends AppCompatActivity {
-    
+
 
     ProgressBar progressBarAdvancedSearch;
     //
@@ -115,11 +116,13 @@ public class AdvancedSearchScreen extends AppCompatActivity {
 
                     if (InternetConnection.checkConnection(getApplicationContext())) {
                         // Its Available...
-                        CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+//                        CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+                        Toasty.success(getApplicationContext(), "متصل بالانترنت", Toasty.LENGTH_SHORT, true).show();
                     } else {
                         // Not Available...
-                        CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+//                        CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
 
+                        Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت", Toasty.LENGTH_SHORT, true).show();
                     }
 ////            GET VALUE BY NAME
 //                    GetAllMatchItemsByNameRepo.getAllMatchItemsByNameRepo(
@@ -131,7 +134,8 @@ public class AdvancedSearchScreen extends AppCompatActivity {
                     //////
 
 
-                    CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات");
+//                    CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات");
+                    Toasty.info(getApplicationContext(), "جـــارى تحميل البيانات", Toasty.LENGTH_SHORT, true).show();
                     //        get all items in Certain store
 //                    storeReportPeriodicModelArrayList.clear();
 //                    storeReportInCertainPeriodDateAdapter.notifyDataSetChanged();
@@ -156,7 +160,8 @@ public class AdvancedSearchScreen extends AppCompatActivity {
                                         azonateModelArrayListAdvancedH);
                             } catch (Exception e) {
                                 e.getStackTrace();
-                                CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//                                CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                                Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toasty.LENGTH_SHORT, true).show();
                             }
 
 //                            lInCertainStoreInPeriodicDate(getApplicationContext(), storeReportPeriodicModelArrayList);
@@ -172,8 +177,8 @@ public class AdvancedSearchScreen extends AppCompatActivity {
                                         azonateHorizontalAdapter.notifyItemInserted(azonateModelArrayListAdvancedH.size() - 1);
 
                                     } else {
-                                        CustomToast.customToast(getApplicationContext(), "لايوجد بيانات لهذا الاسم");
-
+//                                        CustomToast.customToast(getApplicationContext(), "لايوجد بيانات لهذا الاسم");
+                                        Toasty.error(getApplicationContext(), "لايوجد بيانات لهذا الاسم", Toasty.LENGTH_SHORT, true).show();
                                     }
                                 }
                             });

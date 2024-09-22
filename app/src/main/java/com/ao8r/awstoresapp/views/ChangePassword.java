@@ -17,6 +17,8 @@ import com.ao8r.awstoresapp.repository.ChangeUserPassword;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
+import es.dmoral.toasty.Toasty;
+
 public class ChangePassword extends AppCompatActivity {
 
     private EditText currentPasswordEditText, newPasswordEditText, confrimPasswordEditText;
@@ -58,10 +60,11 @@ public class ChangePassword extends AppCompatActivity {
                 if (InternetConnection.checkConnection(getApplicationContext())) {
                     // Its Available...
                     CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+//                    Toasty.error(getApplicationContext(), "متصل بالانترنت", Toasty.LENGTH_SHORT, true).show();
                 } else {
                     // Not Available...
                     CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌");
-
+//                    Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌", Toasty.LENGTH_SHORT, true).show();
                 }
 
 
@@ -71,16 +74,16 @@ public class ChangePassword extends AppCompatActivity {
                                     newPassword.isEmpty() &&
                                     confirmPassword.isEmpty()) {
 
-                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة ❌");
-
+//                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة ❌");
+                        Toasty.error(getApplicationContext(), "البيانات المدرجة غير صحيحة ", Toasty.LENGTH_SHORT, true).show();
                     } else if (!confirmPassword.equals(newPassword)) {
 
-                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة ❌");
-
+//                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة ❌");
+                        Toasty.error(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة ", Toasty.LENGTH_SHORT, true).show();
                     } else if (!StoresConstants.CURRENT_PASSWORD.equals(currentPassword)) {
 
-                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة ❌");
-
+//                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة ❌");
+                        Toasty.error(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة", Toasty.LENGTH_SHORT, true).show();
                     } else {
 
                         ChangeUserPassword.changeUserPassword(
@@ -90,8 +93,8 @@ public class ChangePassword extends AppCompatActivity {
 
                         System.out.println("currentPassword = " + currentPassword + "\n " + "newPassword =  " + newPassword);
 
-                        CustomToast.customToast(getApplicationContext(), "تم تغيير كلمة المرور بنجاح ✅" + "\n" + "سيتم تحويلك الى صحفه دخول المستخدمين");
-
+//                        CustomToast.customToast(getApplicationContext(), "تم تغيير كلمة المرور بنجاح ✅" + "\n" + "سيتم تحويلك الى صحفه دخول المستخدمين");
+                        Toasty.success(getApplicationContext(), "تم تغيير كلمة المرور بنجاح" , Toasty.LENGTH_SHORT, true).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -106,7 +109,8 @@ public class ChangePassword extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    CustomToast.customToast(getApplicationContext(), "بيانات المستخدم غير صحيحة ❌");
+//                    CustomToast.customToast(getApplicationContext(), "بيانات المستخدم غير صحيحة ❌");
+                    Toasty.error(getApplicationContext(), "بيانات المستخدم غير صحيحة", Toasty.LENGTH_SHORT, true).show();
                 }
 
             }

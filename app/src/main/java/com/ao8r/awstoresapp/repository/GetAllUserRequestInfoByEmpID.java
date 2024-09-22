@@ -11,12 +11,13 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.connection;
 import android.content.Context;
 import android.os.StrictMode;
 
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import es.dmoral.toasty.Toasty;
 
 public  class GetAllUserRequestInfoByEmpID {
 
@@ -36,6 +37,7 @@ public  class GetAllUserRequestInfoByEmpID {
 
             if (connection == null) {
                 System.out.println("connection is null");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toasty.LENGTH_SHORT, true).show();
             } else {
                 String query = "SELECT * FROM Mob_User_Request WHERE Emp_ID = ?";
 
@@ -67,14 +69,16 @@ public  class GetAllUserRequestInfoByEmpID {
                     System.out.println(StoresConstants.EMP_LOCATION);
                     System.out.println(StoresConstants.EMP_NAME);
 
-                    CustomToast.customToast(context, "تم جلب بيانات الموظف بنجاح ✅");
+//                    CustomToast.customToast(context, "تم جلب بيانات الموظف بنجاح ✅");
+                    Toasty.info(context, "تم جلب بيانات الموظف بنجاح ", Toasty.LENGTH_SHORT, true).show();
                 }else {
                     StoresConstants.EMP_USERNAME = "";
                     StoresConstants.EMP_MOBILE = "";
                     StoresConstants.EMP_JOB = "";
                     StoresConstants.EMP_LOCATION = "";
                     StoresConstants.EMP_NAME = "";
-                    CustomToast.customToast(context, "لايوجد بيانات لهذا الموظف ❌");
+//                    CustomToast.customToast(context, "لايوجد بيانات لهذا الموظف ❌");
+                    Toasty.warning(context, "لايوجد بيانات لهذا الموظف ", Toasty.LENGTH_SHORT, true).show();
                 }
             }
         } catch (Exception ex) {

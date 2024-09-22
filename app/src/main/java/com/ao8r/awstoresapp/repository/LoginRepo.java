@@ -2,9 +2,9 @@ package com.ao8r.awstoresapp.repository;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.ao8r.awstoresapp.views.MenuScreen;
 
@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import es.dmoral.toasty.Toasty;
 
 public class LoginRepo {
 
@@ -23,7 +25,8 @@ public class LoginRepo {
             connection = ConnectionHelper.getConnection();
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toast.LENGTH_SHORT, true).show();
 
             } else {
 
@@ -38,17 +41,18 @@ public class LoginRepo {
 
 
                 if (resultSet.next()) {
-                    CustomToast.customToast(context, "تم تسجيل الدخول بنجاح ✅");
+//                    CustomToast.customToast(context, "تم تسجيل الدخول بنجاح ✅");
+                    Toasty.success(context, "تم تسجيل الدخول بنجاح", Toast.LENGTH_SHORT, true).show();
                     StoresConstants.CURRENT_USER_ID = resultSet.getInt("ID");
                     StoresConstants.USER_CONTROL = resultSet.getInt("Flag");
                     StoresConstants.STORE_NUMBER = resultSet.getInt("Store_num");
                     StoresConstants.STORE_SECTOR = resultSet.getString("Sector");
 
                     System.out.println(
-                            "User Credentials: \n ID \n Flag \n Store_num \n Sector\n"+
-                                    resultSet.getInt("ID")+"\n"+
-                                    resultSet.getInt("Flag")+"\n"+
-                                    resultSet.getString("Store_num")+"\n"+
+                            "User Credentials: \n ID \n Flag \n Store_num \n Sector\n" +
+                                    resultSet.getInt("ID") + "\n" +
+                                    resultSet.getInt("Flag") + "\n" +
+                                    resultSet.getString("Store_num") + "\n" +
                                     resultSet.getString("Sector"));
 
 //            used with security levels
@@ -64,8 +68,8 @@ public class LoginRepo {
                     context.startActivity(intent);
 
                 } else {
-                    CustomToast.customToast(context, "بيانات خاطئة ❌");
-
+//                    CustomToast.customToast(context, "بيانات خاطئة ❌");
+                    Toasty.error(context, "بيانات خاطئة ❌", Toast.LENGTH_SHORT, true).show();
                 }
             }
         } catch (SQLException e) {

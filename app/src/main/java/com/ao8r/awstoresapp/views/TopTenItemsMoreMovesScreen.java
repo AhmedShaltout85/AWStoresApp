@@ -3,6 +3,7 @@ package com.ao8r.awstoresapp.views;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,9 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.anychart.AnyChartView;
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.customiz_widgets.CustomLoader;
-import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.repository.GetTopTenMoreMovesItemsRepo;
 import com.ao8r.awstoresapp.utils.StoresConstants;
+
+import es.dmoral.toasty.Toasty;
 
 public class TopTenItemsMoreMovesScreen extends AppCompatActivity {
 
@@ -60,7 +62,8 @@ public class TopTenItemsMoreMovesScreen extends AppCompatActivity {
         try {
             GetTopTenMoreMovesItemsRepo.getTopTenMoreMovesItemsRepo(getApplicationContext(), anyChartView);
         }catch (Exception e){
-            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+            Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
         }
 
 //        //

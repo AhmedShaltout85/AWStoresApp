@@ -1,6 +1,7 @@
 package com.ao8r.awstoresapp.repository;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
@@ -10,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import es.dmoral.toasty.Toasty;
 
 public class GetTotalQuantityRepo {
 
@@ -21,7 +24,8 @@ public class GetTotalQuantityRepo {
             connection = ConnectionHelper.getConnection();
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+//                CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
+                Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toast.LENGTH_SHORT, true).show();
             } else {
 
                 //Query
@@ -45,7 +49,7 @@ public class GetTotalQuantityRepo {
 //                        "  Where A.item_no = ?\n" +
 ////                        "  AND A.store_num = CASE WHEN @StoreNo = 0 THEN A.store_num ELSE @StoreNo END\n" +
 //                        "  Group By A.item_no";
-                "EXEC [dbo].[ItemAllQty] @ItemNo = ?, @StoreNo = 0";
+                        "EXEC [dbo].[ItemAllQty] @ItemNo = ?, @StoreNo = 0";
 
                 PreparedStatement statement = connection.prepareStatement(updateQuery);
 
@@ -60,18 +64,15 @@ public class GetTotalQuantityRepo {
 //                    StoresConstants.ITEM_NAME = resultSet.getString("itemName");
 
 
-
-
 //
 
-                    System.out.println("totalQuantity is:   "+tQty);
+                    System.out.println("totalQuantity is:   " + tQty);
                     CustomToast.customToast(context, String.valueOf(tQty));
-
 
 
                 } else {
                     CustomToast.customToast(context, "Can not get Total Value");
-
+//                    Toasty.error(context, "Can not get Total Value", Toast.LENGTH_SHORT, true).show();
                 }
             }
 

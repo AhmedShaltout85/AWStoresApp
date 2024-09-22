@@ -23,6 +23,8 @@ import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.EncryptionUtil;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
+import es.dmoral.toasty.Toasty;
+
 public class ForgetUserPasswordScreen extends AppCompatActivity {
     private EditText empIdEditText, uNameEditText, empMobileEditText, uPassEditText;
     private String empId, uName, empMobile, Upass;
@@ -85,8 +87,10 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
                 if (InternetConnection.checkConnection(getApplicationContext())) {
                     // Its Available...
                     CustomToast.customToast(getApplicationContext(), "متصل بالانترنت✅");
+//                    Toasty.success(getApplicationContext(), "متصل بالانترنت✅", Toasty.LENGTH_SHORT).show();
                 } else {
                     // Not Available...
+//                    Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌", Toasty.LENGTH_SHORT).show();
                     CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌");
 
                 }
@@ -99,8 +103,8 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
                         uName.isEmpty() &&
                         empMobile.isEmpty() &&
                         Upass.isEmpty()) {
-
-                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل جميع البيانات ❌");
+                    Toasty.warning(getApplicationContext(), "من فضلك ادخل جميع البيانات ", Toasty.LENGTH_SHORT, true).show();
+//                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل جميع البيانات ❌");
 
 
                 } else {
@@ -110,12 +114,15 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
                     try {
                         //
                         GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(getApplicationContext(), empId);
-                        if(!StoresConstants.EMP_ID.equals(empId)){
-                            CustomToast.customToast(getApplicationContext(), "رقم الموظف غير صحيح ❌");
+                        if (!StoresConstants.EMP_ID.equals(empId)) {
+//                            CustomToast.customToast(getApplicationContext(), "رقم الموظف غير صحيح ❌");
+                            Toasty.error(getApplicationContext(), "رقم الموظف غير صحيح ❌", Toasty.LENGTH_SHORT, true).show();
                         } else if (!StoresConstants.EMP_MOBILE.equals(empMobile)) {
-                            CustomToast.customToast(getApplicationContext(), "رقم الهاتف غير صحيح ❌");
+                            Toasty.error(getApplicationContext(), "رقم الهاتف غير صحيح ❌", Toasty.LENGTH_SHORT, true).show();
+//                            CustomToast.customToast(getApplicationContext(), "رقم الهاتف غير صحيح ❌");
                         } else if (!StoresConstants.EMP_USERNAME.equals(uName)) {
-                            CustomToast.customToast(getApplicationContext(), "اسم المستخدم غير صحيح ❌");
+                            Toasty.error(getApplicationContext(), "اسم المستخدم غير صحيح ❌", Toasty.LENGTH_SHORT, true).show();
+//                            CustomToast.customToast(getApplicationContext(), "اسم المستخدم غير صحيح ❌");
                         }
                         //Forget Password call
                         ForgetUserPassword.forgetUserPassword(getApplicationContext(),
@@ -125,8 +132,9 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
 //                                Upass);
                                 EncryptionUtil.encrypt(Upass));
 
-                        CustomToast.customToast(getApplicationContext(), "تم تعيين كلمة المرور بنجاح ✅");
+//                        CustomToast.customToast(getApplicationContext(), "تم تعيين كلمة المرور بنجاح ✅");
 
+                        Toasty.success(getApplicationContext(), "تم تعيين كلمة المرور بنجاح ", Toasty.LENGTH_SHORT, true).show();
                         System.out.println("Forget Password button clicked end");
 ////
                         //send sms using twilio

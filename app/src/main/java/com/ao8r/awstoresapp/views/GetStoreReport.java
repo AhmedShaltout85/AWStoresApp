@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -43,6 +44,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import es.dmoral.toasty.Toasty;
 
 public class GetStoreReport extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -118,7 +121,8 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
         getResultItemsReportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات");
+//                CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات");
+                Toasty.info(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات", Toast.LENGTH_SHORT, true).show();
                 //        get all items in Certain store
                 storeReportModelArrayList.clear();
                 storeReportAdapter.notifyDataSetChanged();
@@ -140,7 +144,8 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
 
                             GetAllItemsInCertainStore.getAllItemsInCertainStore(getApplicationContext(), storeReportModelArrayList);
                         } catch (Exception e) {
-                            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//                            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                            Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toasty.LENGTH_SHORT, true).show();
                         }
 
 //                        storeReportInCertainPeriodDateAdapter.notifyItemInserted(storeReportPeriodicModelArrayList.size() - 1);
@@ -152,7 +157,8 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
                                 if (storeReportModelArrayList.size() >= 1) {
 //                                    GetAllInCertainStoreInPeriodicDate.getAllInCertainStoreInPeriodicDate(getApplicationContext(), storeReportPeriodicModelArrayList);
                                     storeReportAdapter.notifyItemInserted(storeReportModelArrayList.size() - 1);
-                                    CustomToast.customToast(getApplicationContext(), storeReportModelArrayList.size() + " عنصر");
+//                                    CustomToast.customToast(getApplicationContext(), storeReportModelArrayList.size() + " عنصر");
+                                    Toasty.info(getApplicationContext(), storeReportModelArrayList.size() + " عنصر", Toast.LENGTH_SHORT, true).show();
                                 }
                             }
                         });
@@ -168,9 +174,11 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 if (storeReportModelArrayList.isEmpty()) {
-                    CustomToast.customToast(getApplicationContext(), "فضلا اختر المخزن اولا");
+//                    CustomToast.customToast(getApplicationContext(), "فضلا اختر المخزن اولا");
+                    Toasty.warning(getApplicationContext(), "فضلا اختر المخزن اولا", Toast.LENGTH_SHORT, true).show();
                 } else {
-                    CustomToast.customToast(getApplicationContext(), "أنتظر جارى حفظ الملف فى Documents");
+//                    CustomToast.customToast(getApplicationContext(), "أنتظر جارى حفظ الملف فى Documents");
+                    Toasty.info(getApplicationContext(), "أنتظر جارى حفظ الملف فى Documents", Toast.LENGTH_SHORT, true).show();
                     try {
 //                    ExportAsPdfFile.generatePdfFromRecyclerView(getApplicationContext(),
 //                            storeReportRecyclerView,
@@ -253,11 +261,13 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
                 //get all store names by store num
                 spinnerStoreNameArrayList = GetAllStoresNamesByStoreNumDropdown.getAllStoresNamesByStoreNumDropdown(getApplicationContext());
             }else{
-                CustomToast.customToast(getApplicationContext(), "عفو ليس لديك صلاحية لعرض البيانات");
+//                CustomToast.customToast(getApplicationContext(), "عفو ليس لديك صلاحية لعرض البيانات");
+                Toasty.error(getApplicationContext(), "عفو ليس لديك صلاحية لعرض البيانات", Toast.LENGTH_SHORT, true).show();
             }
 
         } catch (Exception e) {
-            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+            Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
         }
         ArrayAdapter<StoresNamesModel> spinnerStoreNamesAdapter =
                 new ArrayAdapter<StoresNamesModel>(
@@ -286,7 +296,8 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        CustomToast.customToast(getApplicationContext(), "فضلا أختر أسم المخزن");
+//        CustomToast.customToast(getApplicationContext(), "فضلا أختر أسم المخزن");
+        Toasty.warning(getApplicationContext(), "فضلا أختر أسم المخزن", Toast.LENGTH_SHORT, true).show();
         getResultItemsReportBtn.setVisibility(View.INVISIBLE);
 
     }

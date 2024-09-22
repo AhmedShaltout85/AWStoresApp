@@ -24,6 +24,8 @@ import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.EncryptionUtil;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
+import es.dmoral.toasty.Toasty;
+
 public class RequestNewUser extends AppCompatActivity {
     private String empId,
             empName,
@@ -124,8 +126,10 @@ public class RequestNewUser extends AppCompatActivity {
                 if (InternetConnection.checkConnection(getApplicationContext())) {
                     // Its Available...
                     CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+//                    Toasty.success(getApplicationContext(), "متصل بالانترنت", Toasty.LENGTH_SHORT, true).show();
                 } else {
                     // Not Available...
+//                    Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت", Toasty.LENGTH_SHORT, true).show();
                     CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
 
                 }
@@ -140,7 +144,8 @@ public class RequestNewUser extends AppCompatActivity {
                             uName.isEmpty() ||
                             uPass.isEmpty()
                     ) {
-                        CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
+//                        CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
+                        Toasty.warning(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ", Toasty.LENGTH_SHORT, true).show();
                     } else {
                         System.out.println("before request user");
                         //request user method
@@ -161,7 +166,8 @@ public class RequestNewUser extends AppCompatActivity {
 //                        RetrieveEncryptedString.retrieveEncryptedString("11111");
                         //redirect to login page
 
-                        CustomToast.customToast(getApplicationContext(), "تم إرسال الطلب بنجاح ✅");
+//                        CustomToast.customToast(getApplicationContext(), "تم إرسال الطلب بنجاح ✅");
+                        Toasty.success(getApplicationContext(), "تم إرسال الطلب بنجاح ", Toasty.LENGTH_SHORT, true).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -178,7 +184,8 @@ public class RequestNewUser extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.getStackTrace();
-                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
+//                    CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
+                    Toasty.warning(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة", Toasty.LENGTH_SHORT, true).show();
                 }
 
                 //        hide keyboard after typed
@@ -202,21 +209,29 @@ public class RequestNewUser extends AppCompatActivity {
         if (InternetConnection.checkConnection(getApplicationContext())) {
             // Its Available...
             CustomToast.customToast(getApplicationContext(), "متصل بالانترنت ✅");
+//            Toasty.success(getApplicationContext(), "متصل بالانترنت ✅", Toasty.LENGTH_SHORT, true).show();
         } else {
             // Not Available...
-            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌");
-
+//            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت ❌");
+            Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت", Toasty.LENGTH_SHORT, true).show();
         }
         if (empIdEditText.getText().toString().isEmpty()) {
-            CustomToast.customToast(getApplicationContext(), "من فضلك ادخل رقم الموظف ❌");
+            Toasty.warning(getApplicationContext(), "من فضلك ادخل رقم الموظف ", Toasty.LENGTH_SHORT, true).show();
+//            CustomToast.customToast(getApplicationContext(), "من فضلك ادخل رقم الموظف ❌");
         } else {
+            StoresConstants.EMP_USERNAME = "";
+            StoresConstants.EMP_MOBILE = "";
+            StoresConstants.EMP_JOB = "";
+            StoresConstants.EMP_LOCATION = "";
+            StoresConstants.EMP_NAME = "";
             //get user info by emp id
-
-            CustomToast.customToast(getApplicationContext(),"فضلا أنتظر جارى جلب بيانات الموظف ✅");
             //get user info by emp id
             GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(
                     getApplicationContext(),
                     empIdEditText.getText().toString().trim());
+            //
+//            Toasty.info(getApplicationContext(), "جاري جلب بيانات الموظف", Toasty.LENGTH_SHORT, true).show();
+//            CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب بيانات الموظف ");
 
             empNameEditText.setText(StoresConstants.EMP_NAME);
             empMobileEditText.setText(StoresConstants.EMP_MOBILE);

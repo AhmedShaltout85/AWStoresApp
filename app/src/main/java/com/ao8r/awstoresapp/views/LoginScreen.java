@@ -26,6 +26,8 @@ import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import es.dmoral.toasty.Toasty;
+
 public class LoginScreen extends AppCompatActivity {
 
     //    declare variables
@@ -87,7 +89,7 @@ public class LoginScreen extends AppCompatActivity {
                 StoresConstants.LOGIN_USER = loginName.getText().toString();
                 password = loginPassword.getText().toString();
                 StoresConstants.CURRENT_PASSWORD = password.trim();
-                System.out.println("Login Password:"+StoresConstants.CURRENT_PASSWORD);
+                System.out.println("Login Password:" + StoresConstants.CURRENT_PASSWORD);
 //                loginPassword.requestFocus();
                 // check user input data validation
 
@@ -116,7 +118,9 @@ public class LoginScreen extends AppCompatActivity {
                     /////////////////////////////////////////////////////////////
                 } catch (Exception exception) {
                     exception.getStackTrace();
-                    CustomToast.customToast(getApplicationContext(), "الخادم فى وضع OFFLINE");
+//                    CustomToast.customToast(getApplicationContext(), "الخادم فى وضع OFFLINE");
+//                    CustomToast.customToast(getApplicationContext(), "الخادم فى وضع OFFLINE");
+                    Toasty.error(getApplicationContext(), "الخادم فى وضع OFFLINE", Toast.LENGTH_SHORT, true).show();
                 }
 
 
@@ -126,8 +130,10 @@ public class LoginScreen extends AppCompatActivity {
                 if (InternetConnection.checkConnection(getApplicationContext())) {
                     // Its Available...
                     CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+//                    Toasty.success(getApplicationContext(), "متصل بالانترنت", Toast.LENGTH_SHORT, true).show();
                 } else {
                     // Not Available...
+//                    Toasty.error(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت", Toast.LENGTH_SHORT, true).show();
                     CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
 
                 }
@@ -135,8 +141,8 @@ public class LoginScreen extends AppCompatActivity {
 //                Check users Authority
 
                 if (StoresConstants.LOGIN_USER.trim().length() == 0 || password.length() == 0) {
-                    CustomToast.customToast(getApplicationContext(), "من فضلك أدخل البيانات");
-
+//                    CustomToast.customToast(getApplicationContext(), "من فضلك أدخل البيانات");
+                    Toasty.warning(getApplicationContext(), "من فضلك أدخل البيانات", Toast.LENGTH_SHORT, true).show();
                 } else {
 
 //              Send LoginRepo data to authorize
@@ -145,7 +151,8 @@ public class LoginScreen extends AppCompatActivity {
 
                         LoginRepo.login(view.getContext(), password);
                     } catch (Exception e) {
-                        CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//                        CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                        Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
                     }
 
                 }
@@ -169,8 +176,8 @@ public class LoginScreen extends AppCompatActivity {
 //              TODO: write ip
                 ReadWriteFileFromInternalMem.generateNoteOnSD(getUrl);
 
-                Toast.makeText(getApplicationContext(), getUrl, Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(getApplicationContext(), getUrl, Toast.LENGTH_SHORT).show();
+                Toasty.success(getApplicationContext(), getUrl, Toast.LENGTH_SHORT, true).show();
 
                 getIpAddress.setText("");
                 bottomSheetDialog.dismiss();
