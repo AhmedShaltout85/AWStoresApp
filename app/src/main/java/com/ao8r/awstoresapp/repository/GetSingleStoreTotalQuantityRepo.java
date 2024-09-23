@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
 import com.ao8r.awstoresapp.models.AzonateModel;
+import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -63,11 +64,12 @@ public class GetSingleStoreTotalQuantityRepo {
 //                        "  Group By A.item_no,A.store_num\n" +
 //                        "  Having Round((SUM(A.in_quen)- SUM(A.out_quen)),2) <> 0\n" +
 //                        "  Order By storeTotalQuantity Desc";
-                  "EXEC [dbo].[ItemStoreQty] @ItemNo = ?, @StoreNo = 0";
+                  "EXEC [dbo].[ItemStoreQty] @ItemNo = ?, @StoreNo = ?";
 
                 PreparedStatement statement = connection.prepareStatement(updateQuery);
 
                 statement.setInt(1, itemNo);
+                statement.setInt(2, StoresConstants.STORE_NUMBER);
 
                 ResultSet resultSet = statement.executeQuery();
 

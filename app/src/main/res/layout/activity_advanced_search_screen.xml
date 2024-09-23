@@ -84,8 +84,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/editTextTextViewId"
-    >
+    android:layout_below="@+id/editTextTextViewId">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/advanceSearchHorizRecView"
             android:layout_width="match_parent"

@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="15dp"
-    app:cardMaxElevation="20dp"
-    app:cardPreventCornerOverlap="true"
-    android:layout_margin="10dp"
-    app:cardBackgroundColor="@android:color/white">
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="7dp"
-        >
+        android:layout_margin="13dp">
         <ImageView
             android:id="@+id/idAddToFavAdvancedSearchImageView"
             android:layout_width="35dp"
@@ -24,7 +16,7 @@
             android:layout_margin="5dp"
             android:contentDescription="@string/app_name"
             android:padding="5dp"
-            android:src="@drawable/ic_favorite" />
+            android:background="@color/shimmer_color" />
 
         <TextView
             android:id="@+id/idItemNameTextViewH"
@@ -32,9 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="@string/query_element"
+            android:background="@color/shimmer_color"
             android:textDirection="rtl"
-            android:textColor="@color/colorPrimaryDark"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -48,21 +39,20 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:drawablePadding="2dp"
-            android:text="@string/search_for_element"
-            android:textDirection="rtl"
-            android:textColor="@color/colorPrimaryDark" />
+            android:background="@color/shimmer_color"
+            android:textDirection="rtl" />
         <TextView
             android:id="@+id/idStoreTotalQuantityTextViewH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/idItemNoTextViewH"
+            android:background="@color/shimmer_color"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:drawablePadding="2dp"
-            android:text="@string/search_for_element"
-            android:textDirection="rtl"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textDirection="rtl" />
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+
+</RelativeLayout>

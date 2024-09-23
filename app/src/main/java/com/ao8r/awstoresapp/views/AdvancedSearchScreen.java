@@ -158,6 +158,9 @@ public class AdvancedSearchScreen extends AppCompatActivity {
                                         getApplicationContext(),
                                         StoresConstants.ITEM_NAME,
                                         azonateModelArrayListAdvancedH);
+                                if(azonateModelArrayListAdvancedH.isEmpty()){
+                                    CustomSnackBar.customSnackBar(view, "الصنف غير موجود", getApplicationContext());
+                                }
                             } catch (Exception e) {
                                 e.getStackTrace();
 //                                CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");

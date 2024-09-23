@@ -32,6 +32,7 @@ import com.ao8r.awstoresapp.repository.GetSingleStoreTotalQuantityRepo;
 import com.ao8r.awstoresapp.repository.GetTotalQuantityRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,9 @@ public class SearchScreen extends AppCompatActivity {
     public EditText itemNumberEditText;
     TextView storesTotalQuantity;
     ImageView addToFavImg;
+    //shimmer loader
+    private ShimmerFrameLayout shimmerFrameLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,8 @@ public class SearchScreen extends AppCompatActivity {
                 RecyclerView.VERTICAL, false)); //define layout manger
         azonateAdapter = new AzonateAdapter(azonateModelArrayList); // assign constructor
         azonateRecyclerView.setAdapter(azonateAdapter); //assign adapter
+
+
 //        EditText
         itemNumberEditText = findViewById(R.id.itemNumberQuerySearchEditText); //assign editText to item Nu.
         itemNumberEditText.requestFocus();
@@ -88,6 +94,11 @@ public class SearchScreen extends AppCompatActivity {
         storesTotalQuantity.setText("الرصيد الكلى فى المخازن: " + "  " + totalQty); //assign value to text
 //        ImageView
         addToFavImg = findViewById(R.id.idAddToFavImgSearchPage);
+
+//        Shimmer
+        shimmerFrameLayout = findViewById(R.id.shimmer);
+//        //start Shimmer
+//        shimmerFrameLayout.startShimmer();
 
     }
 
@@ -146,6 +157,19 @@ public class SearchScreen extends AppCompatActivity {
                     CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
 
                 }
+                //        hide keyboard after typed
+                try {
+
+                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                } catch (Exception e) {
+                    e.getStackTrace();
+                }
+
+                //start Shimmer
+                shimmerFrameLayout.startShimmer();
+
 //        get all stores total Values for certain item
                 try {
 
@@ -165,6 +189,9 @@ public class SearchScreen extends AppCompatActivity {
                             getApplicationContext(),
                             StoresConstants.ITEM_NUMBER,
                             azonateModelArrayList);
+                    if(azonateModelArrayList.isEmpty()){
+                        CustomSnackBar.customSnackBar(view, "الصنف غير موجود", getApplicationContext());
+                    }
                 } catch (Exception e) {
                     Toasty.error(getApplicationContext(), "حدث خطا فى الاتصال بالخادم", Toast.LENGTH_SHORT, true).show();
 //                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
@@ -186,22 +213,20 @@ public class SearchScreen extends AppCompatActivity {
 //                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
                 }
 
-                if (StoresConstants.FAV_ITEM_NUMBER == StoresConstants.ITEM_NUMBER) {
-                    addToFavImg.setImageResource(R.drawable.ic_favorite_white);
-                } else {
+                if (StoresConstants.FAV_ITEM_NUMBER != StoresConstants.ITEM_NUMBER) {
                     addToFavImg.setImageResource(R.drawable.add_to_favorites);
+                } else {
+                    addToFavImg.setImageResource(R.drawable.ic_favorite_white);
 
                 }
             }
-//        hide keyboard after typed
-            try {
 
-                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(
-                        Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            } catch (Exception e) {
-                e.getStackTrace();
-            }
+            //stop Shimmer
+            shimmerFrameLayout.hideShimmer();
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            azonateRecyclerView.setVisibility(View.VISIBLE);
+
         } catch (Exception e) {
             e.getStackTrace();
 //            CustomToast.customToast(getApplicationContext(), "حدث خطا فى الاتصال بالخادم");
@@ -212,30 +237,59 @@ public class SearchScreen extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addToFav(View view) {
-
-        if (StoresConstants.FAV_ITEM_NUMBER == StoresConstants.ITEM_NUMBER) {
+//        check if editText is empty
+        if(itemNumberEditText.getText().toString().isEmpty() || itemNumberEditText.getText().toString().equals("")){
+            Toasty.warning(getApplicationContext(), "فضلا أدخل رقم الصنف", Toast.LENGTH_SHORT, true).show();
+            //check if item exists in Favorites List or NOT
+        } else if (StoresConstants.FAV_ITEM_NUMBER != StoresConstants.ITEM_NUMBER) {
+            try {
+                addToFavImg.setImageResource(R.drawable.add_to_favorites);
+                AddItemsToFavoritesRepo.insertItemsToFavorites(getApplicationContext(), view);
+                addToFavImg.setImageResource(R.drawable.ic_favorite_white);
+            } catch (Exception e) {
+//                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+                Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
+            }
+        }else {
             addToFavImg.setImageResource(R.drawable.ic_favorite_white);
 //            CustomToast.customToast(getApplicationContext(), "هذا الصنف موجود مسبقا");
             Toasty.warning(getApplicationContext(), "هذا الصنف موجود مسبقا", Toast.LENGTH_SHORT, true).show();
-        } else {
-
-//        call AddItemsToFavs
-            if (itemNumberEditText.getText().toString().isEmpty()) {
-//                CustomToast.customToast(getApplicationContext(), "فضلا أدخل رقم الصنف");
-                Toasty.warning(getApplicationContext(), "فضلا أدخل رقم الصنف", Toast.LENGTH_SHORT, true).show();
-            } else {
-                try {
-                    addToFavImg.setImageResource(R.drawable.add_to_favorites);
-                    AddItemsToFavoritesRepo.insertItemsToFavorites(getApplicationContext(), view);
-                    addToFavImg.setImageResource(R.drawable.ic_favorite_white);
-                } catch (Exception e) {
-//                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
-                    Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
-                }
-
-            }
         }
+//
+//        if (StoresConstants.FAV_ITEM_NUMBER == StoresConstants.ITEM_NUMBER) {
+//            addToFavImg.setImageResource(R.drawable.ic_favorite_white);
+////            CustomToast.customToast(getApplicationContext(), "هذا الصنف موجود مسبقا");
+//            Toasty.warning(getApplicationContext(), "هذا الصنف موجود مسبقا", Toast.LENGTH_SHORT, true).show();
+//        } else {
+//
+////        call AddItemsToFavs
+//            if (itemNumberEditText.getText().toString().isEmpty() || itemNumberEditText.getText().toString().equals("")) {
+////                CustomToast.customToast(getApplicationContext(), "فضلا أدخل رقم الصنف");
+//                Toasty.warning(getApplicationContext(), "فضلا أدخل رقم الصنف", Toast.LENGTH_SHORT, true).show();
+//            } else {
+//                try {
+//                    addToFavImg.setImageResource(R.drawable.add_to_favorites);
+//                    AddItemsToFavoritesRepo.insertItemsToFavorites(getApplicationContext(), view);
+//                    addToFavImg.setImageResource(R.drawable.ic_favorite_white);
+//                } catch (Exception e) {
+////                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+//                    Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
+//                }
+//
+//            }
+//
+//        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
     }
 
+    @Override
+    protected void onPause() {
+        shimmerFrameLayout.startShimmer();
+        super.onPause();
+    }
 
 }

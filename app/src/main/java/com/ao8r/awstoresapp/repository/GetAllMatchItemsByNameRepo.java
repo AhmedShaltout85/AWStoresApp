@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.ao8r.awstoresapp.controller.ConnectionHelper;
 import com.ao8r.awstoresapp.models.AzonateModel;
+import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,11 +55,12 @@ public class GetAllMatchItemsByNameRepo {
 //                        "  Group By A.item_no\n" +
 //                        "  Having Round((SUM(A.in_quen)- SUM(A.out_quen)),2) <> 0\n" +
 //                        "  Order By ItemName Desc, storeTotalQuantity Desc";
-                "EXEC [dbo].[MatchItemsByName] @ItemName = ? ,@StoreNo = 0";
+                "EXEC [dbo].[MatchItemsByName] @ItemName = ? ,@StoreNo = ?";
 
                 PreparedStatement statement = connection.prepareStatement(updateQuery);
 
                 statement.setString(1, "%"+itemName+"%");
+                statement.setInt(2, StoresConstants.STORE_NUMBER);
 
                 ResultSet resultSet = statement.executeQuery();
 

@@ -49,11 +49,12 @@ public class GetTotalQuantityRepo {
 //                        "  Where A.item_no = ?\n" +
 ////                        "  AND A.store_num = CASE WHEN @StoreNo = 0 THEN A.store_num ELSE @StoreNo END\n" +
 //                        "  Group By A.item_no";
-                        "EXEC [dbo].[ItemAllQty] @ItemNo = ?, @StoreNo = 0";
+                        "EXEC [dbo].[ItemAllQty] @ItemNo = ?, @StoreNo = ?";
 
                 PreparedStatement statement = connection.prepareStatement(updateQuery);
 
                 statement.setString(1, String.valueOf(StoresConstants.ITEM_NUMBER));
+                statement.setInt(2, StoresConstants.STORE_NUMBER);
 
                 ResultSet resultSet = statement.executeQuery();
 
