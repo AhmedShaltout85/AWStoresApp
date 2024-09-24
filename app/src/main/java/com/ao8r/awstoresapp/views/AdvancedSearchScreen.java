@@ -24,10 +24,12 @@ import com.ao8r.awstoresapp.adapter.AzonateHorizontalAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomSnackBar;
 import com.ao8r.awstoresapp.models.AzonateModel;
 import com.ao8r.awstoresapp.repository.GetAllMatchItemsByNameRepo;
+import com.ao8r.awstoresapp.repository.GetAllMatchItemsByNameWithFilterBySectorNameRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -153,11 +155,20 @@ public class AdvancedSearchScreen extends AppCompatActivity {
 
                             //
                             try {
-
-                                GetAllMatchItemsByNameRepo.getAllMatchItemsByNameRepo(
-                                        getApplicationContext(),
-                                        StoresConstants.ITEM_NAME,
-                                        azonateModelArrayListAdvancedH);
+                                //get all items in Certain stores (department Manager permission)
+                                if(StoresConstants.USER_CONTROL==2 && !Objects.equals(StoresConstants.STORE_SECTOR, "0")){
+                                    GetAllMatchItemsByNameWithFilterBySectorNameRepo.getAllMatchItemsByNameWithFilterBySectorNameRepo(
+                                            getApplicationContext(),
+                                            StoresConstants.ITEM_NAME,
+                                            azonateModelArrayListAdvancedH);
+                                }else {
+                                    //get all items in store or stores
+                                    GetAllMatchItemsByNameRepo.getAllMatchItemsByNameRepo(
+                                            getApplicationContext(),
+                                            StoresConstants.ITEM_NAME,
+                                            azonateModelArrayListAdvancedH);
+                                }
+                                //check if list is empty
                                 if(azonateModelArrayListAdvancedH.isEmpty()){
                                     CustomSnackBar.customSnackBar(view, "الصنف غير موجود", getApplicationContext());
                                 }

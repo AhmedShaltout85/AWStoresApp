@@ -28,13 +28,16 @@ import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
 import com.ao8r.awstoresapp.repository.AddItemsToFavoritesRepo;
 import com.ao8r.awstoresapp.repository.CheckItemExistsInFavoritesRepo;
+import com.ao8r.awstoresapp.repository.GetSingleStoreTotalQuantityFilterBySectorNameRepo;
 import com.ao8r.awstoresapp.repository.GetSingleStoreTotalQuantityRepo;
+import com.ao8r.awstoresapp.repository.GetTotalQuantityFilterBySectorNameRepo;
 import com.ao8r.awstoresapp.repository.GetTotalQuantityRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -172,8 +175,13 @@ public class SearchScreen extends AppCompatActivity {
 
 //        get all stores total Values for certain item
                 try {
+                    if(StoresConstants.USER_CONTROL==2 && !Objects.equals(StoresConstants.STORE_SECTOR, "0")) {
 
-                    totalQty = GetTotalQuantityRepo.getSumTotalQuantity(getApplicationContext());
+                        totalQty = GetTotalQuantityFilterBySectorNameRepo.getSumTotalQuantityFilterBySectorName(getApplicationContext());
+                    }else{
+
+                        totalQty = GetTotalQuantityRepo.getSumTotalQuantity(getApplicationContext());
+                    }
                     storesTotalQuantity.setText("الرصيد الكلى فى المخازن: " + "  " + totalQty); //assign value to text
                 } catch (Exception e) {
 //                    CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
@@ -184,11 +192,23 @@ public class SearchScreen extends AppCompatActivity {
 //        get single Store Total quantity
 
                 try {
+                    //get all items in stores sector
+                    if(StoresConstants.USER_CONTROL==2 && !Objects.equals(StoresConstants.STORE_SECTOR, "0")) {
 
-                    GetSingleStoreTotalQuantityRepo.getSingleStoreTotalQuantity(
-                            getApplicationContext(),
-                            StoresConstants.ITEM_NUMBER,
-                            azonateModelArrayList);
+                        GetSingleStoreTotalQuantityFilterBySectorNameRepo.getSingleStoreTotalQuantityFilterBySectorName(
+                                getApplicationContext(),
+                                StoresConstants.ITEM_NUMBER,
+                                azonateModelArrayList);
+                    }else{
+                        //get all items in store
+
+                        GetSingleStoreTotalQuantityRepo.getSingleStoreTotalQuantity(
+                                getApplicationContext(),
+                                StoresConstants.ITEM_NUMBER,
+                                azonateModelArrayList);
+                    }
+
+                    //check if list is empty
                     if(azonateModelArrayList.isEmpty()){
                         CustomSnackBar.customSnackBar(view, "الصنف غير موجود", getApplicationContext());
                     }
