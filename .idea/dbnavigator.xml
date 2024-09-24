@@ -40,7 +40,9 @@ WHERE store_num = 3;]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="df967459-fd4e-450a-9562-e92950f0ee20" object-ref="schemas/dbo/tables/Mob_Users" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="df967459-fd4e-450a-9562-e92950f0ee20" />
