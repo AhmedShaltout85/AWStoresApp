@@ -27,6 +27,7 @@ public class StoresConstants {
     public static long CURRENT_USER_ID;
     public static String LOGIN_USER;
     public static int USER_CONTROL;
+    public static  int USER_PERMISSION_LEVEL;
     public static int STORE_NUMBER;
     public static String STORE_SECTOR;
     public static int ITEM_NUMBER;

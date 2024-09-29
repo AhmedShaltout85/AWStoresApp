@@ -18,7 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.repository.ForgetUserPassword;
-import com.ao8r.awstoresapp.repository.GetAllUserRequestInfoByEmpID;
+import com.ao8r.awstoresapp.repository.GetAllUserInfoForgetPasswordByEmpID;
 import com.ao8r.awstoresapp.services.InternetConnection;
 import com.ao8r.awstoresapp.utils.EncryptionUtil;
 import com.ao8r.awstoresapp.utils.StoresConstants;
@@ -113,40 +113,41 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
 
                     try {
                         //
-                        GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(getApplicationContext(), empId);
+                        GetAllUserInfoForgetPasswordByEmpID.getAllUserRequestInfoByEmpID(getApplicationContext(), empId);
+//                        GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(getApplicationContext(), empId);
+                        //
                         if (!StoresConstants.EMP_ID.equals(empId)) {
 //                            CustomToast.customToast(getApplicationContext(), "رقم الموظف غير صحيح ❌");
-                            Toasty.error(getApplicationContext(), "رقم الموظف غير صحيح ❌", Toasty.LENGTH_SHORT, true).show();
+                            Toasty.error(getApplicationContext(), "رقم الموظف غير صحيح", Toasty.LENGTH_SHORT, true).show();
                         } else if (!StoresConstants.EMP_MOBILE.equals(empMobile)) {
-                            Toasty.error(getApplicationContext(), "رقم الهاتف غير صحيح ❌", Toasty.LENGTH_SHORT, true).show();
+                            Toasty.error(getApplicationContext(), "رقم الهاتف غير صحيح ", Toasty.LENGTH_SHORT, true).show();
 //                            CustomToast.customToast(getApplicationContext(), "رقم الهاتف غير صحيح ❌");
                         } else if (!StoresConstants.EMP_USERNAME.equals(uName)) {
-                            Toasty.error(getApplicationContext(), "اسم المستخدم غير صحيح ❌", Toasty.LENGTH_SHORT, true).show();
+                            Toasty.error(getApplicationContext(), "اسم المستخدم غير صحيح ", Toasty.LENGTH_SHORT, true).show();
 //                            CustomToast.customToast(getApplicationContext(), "اسم المستخدم غير صحيح ❌");
-                        }
-                        //Forget Password call
-                        ForgetUserPassword.forgetUserPassword(getApplicationContext(),
-                                empId,
-                                empMobile,
-                                uName,
-//                                Upass);
-                                EncryptionUtil.encrypt(Upass));
+                        }else {
+                            //Forget Password call
+                            ForgetUserPassword.forgetUserPassword(getApplicationContext(),
+                                    empId,
+                                    empMobile,
+                                    uName,
+                                    EncryptionUtil.encrypt(Upass));
 
 //                        CustomToast.customToast(getApplicationContext(), "تم تعيين كلمة المرور بنجاح ✅");
 
-                        Toasty.success(getApplicationContext(), "تم تعيين كلمة المرور بنجاح ", Toasty.LENGTH_SHORT, true).show();
-                        System.out.println("Forget Password button clicked end");
+                            Toasty.success(getApplicationContext(), "تم تعيين كلمة المرور بنجاح ", Toasty.LENGTH_SHORT, true).show();
+                            System.out.println("Forget Password button clicked end");
 ////
-                        //send sms using twilio
+                            //send sms using twilio
 //                        TwilioServicesToSendSms.sendSmsUsingTwilio(getApplicationContext(),"+201032743609",
 //                                "username: ahmed"+"\n"+
 //                                "password: 12345");
 
-                        //send sms using fast2sms
+                            //send sms using fast2sms
 //                        SmsSender.sendSms("+201032743609", "welcome to Stores App \n your_pass: 123456");
 
 
-                        //TODO://31-08-2024 send sms
+                            //TODO://31-08-2024 send sms
 //                        SmsManager smsManager = SmsManager.getDefault();
 //                        smsManager.sendTextMessage("+201277175547", null, "username: ahmed"+"\n"+
 //                                "password: 12345" +"\n", null, null);
@@ -154,20 +155,22 @@ public class ForgetUserPasswordScreen extends AppCompatActivity {
 //call forget user password method
 
 
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        }, 2000);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, 2000);
+                        }
                     } catch (Exception e) {
                         e.getMessage();
                         System.out.println(e.getMessage());
 //                        CustomToast.customToast(getApplicationContext(), "من فضلك ادخل البيانات الصحيحة ❌");
 
                     }
+
                 }
 
 

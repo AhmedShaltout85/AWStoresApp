@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.adapter.AzonateHorizontalAdapter;
 import com.ao8r.awstoresapp.customiz_widgets.CustomSnackBar;
+import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.models.AzonateModel;
 import com.ao8r.awstoresapp.repository.GetAllMatchItemsByNameRepo;
 import com.ao8r.awstoresapp.repository.GetAllMatchItemsByNameWithFilterBySectorNameRepo;
@@ -106,7 +107,7 @@ public class AdvancedSearchScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (itemNameEditTextAdvanced.getText().toString().isEmpty()) {
-                    CustomSnackBar.customSnackBar(view, "فضلا أكمل البيانات", getApplicationContext());
+                    CustomSnackBar.customSnackBar(view, "فضلا, ادخل اسم الصنف ", getApplicationContext());
                 } else {
 //        getValue in EditText
                     azonateModelArrayListAdvancedH.clear();
@@ -118,8 +119,8 @@ public class AdvancedSearchScreen extends AppCompatActivity {
 
                     if (InternetConnection.checkConnection(getApplicationContext())) {
                         // Its Available...
-//                        CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
-                        Toasty.success(getApplicationContext(), "متصل بالانترنت", Toasty.LENGTH_SHORT, true).show();
+                        CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+//                        Toasty.success(getApplicationContext(), "متصل بالانترنت", Toasty.LENGTH_SHORT, true).show();
                     } else {
                         // Not Available...
 //                        CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
@@ -137,7 +138,7 @@ public class AdvancedSearchScreen extends AppCompatActivity {
 
 
 //                    CustomToast.customToast(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات");
-                    Toasty.info(getApplicationContext(), "جـــارى تحميل البيانات", Toasty.LENGTH_SHORT, true).show();
+                    Toasty.info(getApplicationContext(), "فضلا أنتظر جارى جلب البيانات", Toasty.LENGTH_SHORT, true).show();
                     //        get all items in Certain store
 //                    storeReportPeriodicModelArrayList.clear();
 //                    storeReportInCertainPeriodDateAdapter.notifyDataSetChanged();

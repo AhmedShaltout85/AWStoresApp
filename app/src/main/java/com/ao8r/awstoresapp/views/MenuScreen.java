@@ -123,7 +123,7 @@ public class MenuScreen extends AppCompatActivity {
     }
 
     public void navToGetReportForCertainStore(View view) {
-        if (StoresConstants.USER_CONTROL == 4) {
+        if (StoresConstants.USER_PERMISSION_LEVEL == 4) {
 //            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
             Toasty.error(this, "لا يمكن عرض التقارير لهذا المستخدم", Toast.LENGTH_SHORT, true).show();
         } else {
@@ -133,7 +133,7 @@ public class MenuScreen extends AppCompatActivity {
     }
 
     public void navToGetStoreReportInPeriodic(View view) {
-        if (StoresConstants.USER_CONTROL == 4) {
+        if (StoresConstants.USER_PERMISSION_LEVEL == 4) {
 //            CustomToast.customToast(this, "لا يمكن عرض التقارير لهذا المستخدم");
             Toasty.error(this, "لا يمكن عرض التقارير لهذا المستخدم", Toast.LENGTH_SHORT, true).show();
         } else {

@@ -30,7 +30,8 @@ public class LoginRepo {
 
             } else {
 
-                String query = "SELECT * FROM Mob_Users WHERE Name= ? AND Pass = ?";
+//                String query = "SELECT * FROM Mob_Users WHERE Name= ? AND Pass = ?";
+                String query = "SELECT * FROM Mob_User_Request WHERE UName= ? AND UPass = ?";
 //                    Statement statement = connection.createStatement();
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, StoresConstants.LOGIN_USER);
@@ -42,9 +43,10 @@ public class LoginRepo {
 
                 if (resultSet.next()) {
 //                    CustomToast.customToast(context, "تم تسجيل الدخول بنجاح ✅");
-                    Toasty.success(context, "تم تسجيل الدخول بنجاح", Toast.LENGTH_SHORT, true).show();
+//                    Toasty.success(context, "تم تسجيل الدخول بنجاح", Toast.LENGTH_SHORT, true).show();
                     StoresConstants.CURRENT_USER_ID = resultSet.getInt("ID");
                     StoresConstants.USER_CONTROL = resultSet.getInt("Flag");
+                    StoresConstants.USER_PERMISSION_LEVEL = resultSet.getInt("S_Flag");
                     StoresConstants.STORE_NUMBER = resultSet.getInt("Store_num");
                     StoresConstants.STORE_SECTOR = resultSet.getString("Sector");
 
@@ -52,6 +54,7 @@ public class LoginRepo {
                             "User Credentials: \n ID \n Flag \n Store_num \n Sector\n" +
                                     resultSet.getInt("ID") + "\n" +
                                     resultSet.getInt("Flag") + "\n" +
+                                    resultSet.getInt("S_Flag") + "\n" +
                                     resultSet.getString("Store_num") + "\n" +
                                     resultSet.getString("Sector"));
 
@@ -64,12 +67,19 @@ public class LoginRepo {
 //                    }
 
 //
-                    Intent intent = new Intent(context, MenuScreen.class);
-                    context.startActivity(intent);
+                    if(StoresConstants.USER_CONTROL == 1){
+                        Toasty.warning(context, "فضلا قم بتفعيل حسابك أولا", Toast.LENGTH_SHORT, true).show();
+
+                    }else {
+                        Toasty.success(context, "تم تسجيل الدخول بنجاح", Toast.LENGTH_SHORT, true).show();
+                        Intent intent = new Intent(context, MenuScreen.class);
+                        context.startActivity(intent);
+
+                    }
 
                 } else {
 //                    CustomToast.customToast(context, "بيانات خاطئة ❌");
-                    Toasty.error(context, "بيانات خاطئة ❌", Toast.LENGTH_SHORT, true).show();
+                    Toasty.error(context, "بيانات خاطئة", Toast.LENGTH_SHORT, true).show();
                 }
             }
         } catch (SQLException e) {

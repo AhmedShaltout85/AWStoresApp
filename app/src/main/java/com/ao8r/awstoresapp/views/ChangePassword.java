@@ -15,6 +15,7 @@ import com.ao8r.awstoresapp.R;
 import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.repository.ChangeUserPassword;
 import com.ao8r.awstoresapp.services.InternetConnection;
+import com.ao8r.awstoresapp.utils.EncryptionUtil;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import es.dmoral.toasty.Toasty;
@@ -75,21 +76,21 @@ public class ChangePassword extends AppCompatActivity {
                                     confirmPassword.isEmpty()) {
 
 //                        CustomToast.customToast(getApplicationContext(), "البيانات المدرجة غير صحيحة ❌");
-                        Toasty.error(getApplicationContext(), "البيانات المدرجة غير صحيحة ", Toasty.LENGTH_SHORT, true).show();
+                        Toasty.warning(getApplicationContext(), "فضلا, برجاء أدخال بيانات صحيحة", Toasty.LENGTH_SHORT, true).show();
                     } else if (!confirmPassword.equals(newPassword)) {
 
 //                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة ❌");
-                        Toasty.error(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة ", Toasty.LENGTH_SHORT, true).show();
+                        Toasty.warning(getApplicationContext(), "عفوا كلمة المرور الجديدة غير مطابقة ", Toasty.LENGTH_SHORT, true).show();
                     } else if (!StoresConstants.CURRENT_PASSWORD.equals(currentPassword)) {
 
 //                        CustomToast.customToast(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة ❌");
-                        Toasty.error(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة", Toasty.LENGTH_SHORT, true).show();
+                        Toasty.warning(getApplicationContext(), "عفوا كلمة المرور الحالية غير مطابقة", Toasty.LENGTH_SHORT, true).show();
                     } else {
 
                         ChangeUserPassword.changeUserPassword(
                                 getApplicationContext(),
-                                currentPassword,
-                                newPassword);
+                                EncryptionUtil.encrypt(currentPassword),
+                                EncryptionUtil.encrypt(newPassword));
 
                         System.out.println("currentPassword = " + currentPassword + "\n " + "newPassword =  " + newPassword);
 
@@ -103,7 +104,7 @@ public class ChangePassword extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-                        }, 2000);
+                        }, 2500);
 
 
                     }

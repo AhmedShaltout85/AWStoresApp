@@ -23,6 +23,7 @@ import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.customiz_widgets.ReadWriteFileFromInternalMem;
 import com.ao8r.awstoresapp.repository.LoginRepo;
 import com.ao8r.awstoresapp.services.InternetConnection;
+import com.ao8r.awstoresapp.utils.EncryptionUtil;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -140,16 +141,20 @@ public class LoginScreen extends AppCompatActivity {
 
 //                Check users Authority
 
-                if (StoresConstants.LOGIN_USER.trim().length() == 0 || password.length() == 0) {
+                if (StoresConstants.LOGIN_USER.trim().isEmpty() || password.trim().isEmpty()) {
 //                    CustomToast.customToast(getApplicationContext(), "من فضلك أدخل البيانات");
                     Toasty.warning(getApplicationContext(), "من فضلك أدخل البيانات", Toast.LENGTH_SHORT, true).show();
+//                } else if (StoresConstants.USER_CONTROL ==1) {
+//                    Toasty.warning(getApplicationContext(), "ليس لديك صلاحيات للدخول", Toast.LENGTH_SHORT, true).show();
                 } else {
-
 //              Send LoginRepo data to authorize
-//
-                    try {
 
-                        LoginRepo.login(view.getContext(), password);
+                    try {
+                        String decryptedPassword = EncryptionUtil.encrypt(password);
+                        LoginRepo.login(view.getContext(), decryptedPassword);
+//                        LoginRepo.login(view.getContext(), password);
+
+
                     } catch (Exception e) {
 //                        CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
                         Toasty.error(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى", Toast.LENGTH_SHORT, true).show();
@@ -157,6 +162,7 @@ public class LoginScreen extends AppCompatActivity {
 
                 }
             }
+
         });
 
 

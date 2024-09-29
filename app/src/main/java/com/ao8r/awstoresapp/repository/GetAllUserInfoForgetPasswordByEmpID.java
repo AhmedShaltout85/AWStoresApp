@@ -11,6 +11,7 @@ import static com.ao8r.awstoresapp.utils.StoresConstants.connection;
 import android.content.Context;
 import android.os.StrictMode;
 
+import com.ao8r.awstoresapp.customiz_widgets.CustomToast;
 import com.ao8r.awstoresapp.utils.StoresConstants;
 
 import java.sql.DriverManager;
@@ -19,7 +20,7 @@ import java.sql.ResultSet;
 
 import es.dmoral.toasty.Toasty;
 
-public  class GetAllUserRequestInfoByEmpID {
+public  class GetAllUserInfoForgetPasswordByEmpID {
 
     public static void getAllUserRequestInfoByEmpID(Context context, String empId) {
         try {
@@ -39,8 +40,8 @@ public  class GetAllUserRequestInfoByEmpID {
                 System.out.println("connection is null");
                 Toasty.error(context, "عفو لايمكن الأتصال بالخادم", Toasty.LENGTH_SHORT, true).show();
             } else {
-//                String query = "SELECT * FROM Mob_User_Request WHERE Emp_ID = ?";
-                String query = "EXEC [dbo].[User_Check] @Emp_ID = ?";
+                String query = "SELECT * FROM Mob_User_Request WHERE Emp_ID = ?";
+//                String query = "EXEC [dbo].[User_Check] @Emp_ID = ?";
 
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -49,29 +50,24 @@ public  class GetAllUserRequestInfoByEmpID {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    // Do something with the encrypted string
-//                    String Upass = resultSet.getString("UPass");
-//                    System.out.println("encrypted password = " + Upass);
-//                    String EncryptedPass = EncryptionUtil.decrypt(Upass);
-//                    System.out.println("decrypted password = " + EncryptedPass);
                     //
                     //get emp info from mob_user_request table by emp id
                     StoresConstants.EMP_ID = resultSet.getString("Emp_ID");
                     StoresConstants.EMP_NAME = resultSet.getString("Emp_Name");
                     StoresConstants.EMP_JOB = resultSet.getString("Emp_Job");
                     StoresConstants.EMP_LOCATION = resultSet.getString("Emp_Location");
-//                    StoresConstants.EMP_MOBILE = resultSet.getString("Emp_Mobile");
-//                    StoresConstants.EMP_USERNAME = resultSet.getString("UName");
+                    StoresConstants.EMP_MOBILE = resultSet.getString("Emp_Mobile");
+                    StoresConstants.EMP_USERNAME = resultSet.getString("UName");
 
                     System.out.println(StoresConstants.EMP_ID);
                     System.out.println(StoresConstants.EMP_JOB);
                     System.out.println(StoresConstants.EMP_LOCATION);
                     System.out.println(StoresConstants.EMP_NAME);
-//                    System.out.println(StoresConstants.EMP_MOBILE);
-//                    System.out.println(StoresConstants.EMP_USERNAME);
+                    System.out.println(StoresConstants.EMP_MOBILE);
+                    System.out.println(StoresConstants.EMP_USERNAME);
 
-//                    CustomToast.customToast(context, "تم جلب بيانات الموظف بنجاح ✅");
-                    Toasty.info(context, "تم جلب بيانات الموظف بنجاح ", Toasty.LENGTH_SHORT, true).show();
+                    CustomToast.customToast(context, "تم جلب بيانات الموظف بنجاح ✅");
+//                    Toasty.info(context, "تم جلب بيانات الموظف بنجاح ", Toasty.LENGTH_SHORT, true).show();
                 }else {
                     StoresConstants.EMP_USERNAME = "";
                     StoresConstants.EMP_MOBILE = "";

@@ -246,7 +246,7 @@ public class GetStoreReport extends AppCompatActivity implements AdapterView.OnI
 
         try {
 
-            if (StoresConstants.USER_CONTROL == 1 &&
+            if (StoresConstants.USER_PERMISSION_LEVEL == 1 &&
                     StoresConstants.STORE_NUMBER == 0 &&
                     Objects.equals(StoresConstants.STORE_SECTOR, "0")) {
 

@@ -224,7 +224,7 @@ public class RequestNewUser extends AppCompatActivity {
             StoresConstants.EMP_JOB = "";
             StoresConstants.EMP_LOCATION = "";
             StoresConstants.EMP_NAME = "";
-            //get user info by emp id
+
             //get user info by emp id
             GetAllUserRequestInfoByEmpID.getAllUserRequestInfoByEmpID(
                     getApplicationContext(),
